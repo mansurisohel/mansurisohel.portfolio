@@ -31,6 +31,3 @@ It showcases my skills, projects, certifications, and contact details.
 - Project Showcase  
 - Certifications Section  
 - Contact Information  
-
----
-## 📂 Project St
