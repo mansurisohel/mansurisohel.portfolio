@@ -1,1 +1,38 @@
-# mansurisohel.portfolio
+# 🌐 Personal Portfolio Website
+
+Hi, I'm Sohel Mansuri 👋  
+Frontend Developer | Web Designer
+
+This is my personal portfolio website created using HTML and CSS.  
+It showcases my skills, projects, certifications, and contact details.
+
+---
+
+## 🚀 Live Website
+
+🔗 https://yourusername.github.io/
+
+---
+
+## 🛠️ Built With
+
+- HTML5  
+- CSS3  
+- Google Fonts  
+- Font Awesome  
+- GitHub Pages  
+
+---
+
+## ✨ Features
+
+- Responsive Design  
+- Clean and Simple Layout  
+- Project Showcase  
+- Certifications Section  
+- Contact Information  
+
+---
+
+## 📂 Project Structure
+
