@@ -26,7 +26,7 @@ It showcases my skills, projects, certifications, and contact details.
 
 ## ✨ Features
 
-- Responsive Design  
+- Responsive Design    
 - Clean and Simple Layout  
 - Project Showcase  
 - Contact Information  
