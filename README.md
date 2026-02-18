@@ -10,7 +10,7 @@ It showcases my skills, projects, certifications, and contact details.
 
 ## 🚀 Live Website
 
-🔗 https://yourusername.github.io/
+🔗 https://mansurisohel.portfolio/
 
 ---
 
@@ -29,10 +29,7 @@ It showcases my skills, projects, certifications, and contact details.
 - Responsive Design  
 - Clean and Simple Layout  
 - Project Showcase  
-- Certifications Section  
 - Contact Information  
-
----
 
 ## 📂 Project Structure
 

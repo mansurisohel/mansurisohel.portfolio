@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Child Safety System - Mansuri Sohel</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .project-description {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .video-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .detail-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .detail-card i {
+            font-size: 1.75rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            margin-right: 0.75rem;
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #f5576c;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #f5576c;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .project-description {
+                font-size: 1rem;
+            }
+
+            .video-section {
+                padding: 1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="projects.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Projects
+        </a>
+
+        <div class="project-header">
+            <span class="project-badge">IoT Project</span>
+            <h1>Smart Child Safety System</h1>
+            <p class="project-description">
+                An IoT-based safety monitoring system with SOS alerts, GPS tracking, and real-time notifications for enhanced child security.
+            </p>
+        </div>
+
+        <div class="video-section">
+            <div class="video-container">
+                <video width="100%" controls autoplay muted>
+                    <source src="./images/videos/pr-vid-3.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="project-details">
+            <div class="detail-card">
+                <h3><i class="fas fa-microchip"></i> Technologies Used</h3>
+                <div class="tech-stack">
+                    
+                    <span class="tech-tag">IoT Sensors</span>
+                    <span class="tech-tag">GPS Module</span>
+                    <span class="tech-tag">wokwi simulation</span>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-shield-halved"></i> Key Features</h3>
+                <ul class="features-list">
+                    <li>Real-time GPS location tracking</li>
+                    <li>SOS emergency button</li>
+                    <li>Instant parent notifications</li>
+                    <li>Safe zone alerts</li>
+                    <li>Battery status monitoring</li>
+                </ul>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-heart"></i> Project Purpose</h3>
+                <p style="line-height: 1.8;">
+                    Designed to provide parents peace of mind by enabling real-time monitoring of their child's location 
+                    and safety. The system sends instant alerts in emergency situations and allows parents to define 
+                    safe zones, receiving notifications when boundaries are crossed.
+                </p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="#" class="btn btn-primary">
+                <i class="fas fa-play"></i> Watch Demo
+            </a>
+            <a href="https://wokwi.com/projects/428910591978769409" class="btn btn-outline">
+                <i class="fab fa-github"></i> View Code
+            </a>
+            <a href="projects.html" class="btn btn-outline">
+                <i class="fas fa-folder-open"></i> More Projects
+            </a>
+        </div>
+    </div>
+</body>
+</html>
