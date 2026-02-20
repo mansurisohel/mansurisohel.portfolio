@@ -14,16 +14,27 @@
 <body>
 
 <!-- ================= NAVBAR ================= -->
-<nav class="navbar">
+<nav class="navbar" id="navbar">
     <div class="container">
         <a href="index.html" class="logo">Sohel<span class="logo-dot">.</span></a>
-        <ul class="nav-menu">
+        <ul class="nav-menu" id="navMenu">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link active">About</a></li>
             <li><a href="projects.html" class="nav-link">Projects</a></li>
             <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
-        
+        <div class="navbar-controls">
+            <label class="theme-toggle" for="themeCheckbox">
+                <input type="checkbox" id="themeCheckbox">
+                <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                </span>
+                <span class="toggle-label">Dark</span>
+            </label>
+            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </div>
 </nav>
 
@@ -267,14 +278,11 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
     <div class="container">
-
         <div class="footer-content">
-
             <div class="footer-col">
                 <h3>Sohel.</h3>
                 <p>Frontend Developer passionate about building scalable and user-friendly web applications.</p>
             </div>
-
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
@@ -284,7 +292,6 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Services</h4>
                 <ul>
@@ -293,7 +300,6 @@
                     <li><a href="#">Full Stack Apps</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Follow Me</h4>
                 <div class="social-links">
@@ -302,16 +308,16 @@
                     <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-
         </div>
-
-        <div class="footer-bottom">
-            © 2026 Mansuri Sohel. All Rights Reserved.
-        </div>
-
+        <div class="footer-bottom">© 2026 Mansuri Sohel. All Rights Reserved.</div>
     </div>
 </footer>
 
+<div class="overlay" id="overlay"></div>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
+<script src="main.js"></script>
 </body>
 </html>

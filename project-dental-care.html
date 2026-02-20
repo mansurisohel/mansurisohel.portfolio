@@ -209,34 +209,115 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .project-description {
-                font-size: 1rem;
-            }
-
-            .video-section {
-                padding: 1rem;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
+            body { padding: 1rem; }
+            h1 { font-size: 2rem; }
+            .project-description { font-size: 1rem; }
+            .video-section { padding: 1rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
         }
+
+        .back-to-top {
+            position: fixed; bottom: 2rem; right: 2rem;
+            width: 50px; height: 50px;
+            background: rgba(255,255,255,0.25); backdrop-filter: blur(10px);
+            color: white; border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 50%; cursor: pointer; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transform: translateY(20px);
+            transition: all 0.3s ease; z-index: 9999;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { background: rgba(255,255,255,0.4); transform: translateY(-5px); }
+
+        .dark-toggle {
+            position: fixed; top: 1rem; right: 1rem;
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white; border-radius: 50px; padding: 0.5rem 1rem;
+            cursor: pointer; font-size: 0.9rem; z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        .dark-toggle:hover { background: rgba(255,255,255,0.3); }
+        body.page-dark { filter: brightness(0.85) saturate(0.8); }
+    
+        /* Pill Toggle Switch */
+        .theme-toggle-wrap {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.5rem;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem 0.5rem 0.7rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .theme-toggle-wrap label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .theme-toggle-wrap input[type="checkbox"] { display: none; }
+        .toggle-track {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50px;
+            flex-shrink: 0;
+            transition: background 0.3s ease;
+        }
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: #ffffff;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .theme-toggle-wrap input:checked + .toggle-track { background: rgba(79,70,229,0.8); }
+        .theme-toggle-wrap input:checked + .toggle-track .toggle-thumb { transform: translateX(22px); background: #e0e7ff; }
+        .toggle-lbl { font-size: 0.82rem; font-weight: 600; color: white; letter-spacing: 0.03em; }
+
+        /* Back To Top */
+        .back-to-top {
+            position: fixed; bottom: 2rem; right: 2rem;
+            width: 48px; height: 48px;
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+            color: white; border: 2px solid rgba(255,255,255,0.45);
+            border-radius: 50%; cursor: pointer; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transform: translateY(15px);
+            transition: all 0.3s ease; z-index: 9999;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { background: rgba(255,255,255,0.35); transform: translateY(-4px); }
+
+        body.page-dark { filter: brightness(0.82) saturate(0.75); }
     </style>
 </head>
 <body>
+<div class="theme-toggle-wrap">
+    <label for="themeCheckbox">
+        <input type="checkbox" id="themeCheckbox">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <span class="toggle-lbl">Dark</span>
+    </label>
+</div>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+    
+    
     <div class="container">
         <a href="projects.html" class="back-btn">
             <i class="fas fa-arrow-left"></i> Back to Projects
@@ -307,5 +388,31 @@
             </a>
         </div>
     </div>
+
+    
+
+<script>
+(function(){
+    var cb = document.getElementById('themeCheckbox');
+    var body = document.body;
+    if(localStorage.getItem('darkMode') === 'enabled'){
+        body.classList.add('page-dark');
+        if(cb) cb.checked = true;
+    }
+    if(cb){
+        cb.addEventListener('change', function(){
+            body.classList.toggle('page-dark', this.checked);
+            localStorage.setItem('darkMode', this.checked ? 'enabled' : 'disabled');
+        });
+    }
+    window.addEventListener('scroll', function(){
+        var btn = document.getElementById('backToTop');
+        if(btn) btn.classList.toggle('visible', window.scrollY > 300);
+    });
+    var btt = document.getElementById('backToTop');
+    if(btt) btt.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+})();
+</script>
+
 </body>
 </html>
