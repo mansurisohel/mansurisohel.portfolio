@@ -10,8 +10,7 @@ It showcases my skills, projects, certifications, and contact details.
 
 ## 🚀 Live Website
 
-🔗 https://mansurisohel.portfolio/
-
+🔗 https://mansurisohel.github.io/mansurisohel.portfolio/
 ---
 
 ## 🛠️ Built With
