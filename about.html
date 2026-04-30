@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="scroll-progress"></div>
 
 <!-- ================= NAVBAR ================= -->
 <nav class="navbar" id="navbar">
@@ -72,15 +73,15 @@
                 
             <div class="hero-stats">
                 <div class="stat-item">
-                    <h3>3+</h3>
+                    <h3 data-counter="3" data-suffix="+">0+</h3>
                     <p>Projects Completed</p>
                 </div>
                 <div class="stat-item">
-                    <h3>6+</h3>
+                    <h3 data-counter="6" data-suffix="+">0+</h3>
                     <p>Months Experience</p>
                 </div>
                 <div class="stat-item">
-                    <h3>100%</h3>
+                    <h3 data-counter="100" data-suffix="%">0%</h3>
                     <p>Client Satisfaction</p>
                 </div>
             </div>
@@ -319,5 +320,16 @@
 </button>
 
 <script src="main.js"></script>
+
+<script>
+(function(){
+    var bar = document.getElementById('scroll-progress');
+    if(!bar) return;
+    window.addEventListener('scroll', function(){
+        var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        bar.style.width = Math.min(scrolled, 100) + '%';
+    }, {passive:true});
+})();
+</script>
 </body>
 </html>

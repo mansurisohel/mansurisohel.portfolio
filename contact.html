@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="scroll-progress"></div>
 
 <nav class="navbar" id="navbar">
     <div class="container">
@@ -183,5 +184,16 @@
 
 <script src="main.js"></script>
 <script src="contact-validation.js"></script>
+
+<script>
+(function(){
+    var bar = document.getElementById('scroll-progress');
+    if(!bar) return;
+    window.addEventListener('scroll', function(){
+        var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        bar.style.width = Math.min(scrolled, 100) + '%';
+    }, {passive:true});
+})();
+</script>
 </body>
 </html>

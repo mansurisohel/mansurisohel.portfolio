@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="scroll-progress"></div>
 
 <!-- ================= NAVBAR ================= -->
 <nav class="navbar" id="navbar">
@@ -68,7 +69,7 @@
             <h1 class="hero-title">
                 Mansuri <span class="highlight">Sohel</span><br>
             </h1>
-            <span class="hero-badge">Frontend Developer</span>
+            <span class="hero-badge">Frontend Developer &amp; <span class="typed-text" data-words='["React Developer","UI Designer","Problem Solver","Web Creator"]'>React Developer</span></span>
             <p class="hero-subtitle">
                 A Motivated and detail-oriented Frontend Developer with a strong foundation 
                 in React.js, JavaScript, HTML5, CSS3, and Tailwind CSS. Passionate about building 
@@ -239,5 +240,16 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 <script src="main.js"></script>
+
+<script>
+(function(){
+    var bar = document.getElementById('scroll-progress');
+    if(!bar) return;
+    window.addEventListener('scroll', function(){
+        var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        bar.style.width = Math.min(scrolled, 100) + '%';
+    }, {passive:true});
+})();
+</script>
 </body>
 </html>
