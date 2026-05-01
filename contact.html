@@ -3,197 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Mansuri Sohel</title>
+    <meta name="description" content="Contact Mansuri Sohel — Frontend Developer. Reach out for project collaborations, freelance work, or just to say hello.">
+    <title>Contact | Mansuri Sohel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ── Contact page extras ─────────────────────────────── */
+
+        /* Availability banner */
+        .availability-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: .625rem;
+            padding: .6rem 1.5rem;
+            background: rgba(34,197,94,.08);
+            border: 1px solid rgba(34,197,94,.25);
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: .85rem;
+            font-weight: 600;
+            color: #16a34a;
+            margin-bottom: 1.5rem;
+        }
+
+        .avail-dot {
+            width: 9px; height: 9px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-green 1.8s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,.5); }
+            50%       { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+        }
+
+        /* Preferred contact note */
+        .contact-note {
+            font-family: 'Inter', sans-serif;
+            font-size: .85rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            margin-top: .25rem;
+            padding: 1rem 1.25rem;
+            background: var(--accent-light);
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Character counter for textarea */
+        .char-counter {
+            font-family: 'Inter', sans-serif;
+            font-size: .72rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: .25rem;
+        }
+
+        /* Map placeholder */
+        .map-placeholder {
+            margin-top: 1.5rem;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            height: 180px;
+            background: var(--gradient-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .75rem;
+            font-family: 'Inter', sans-serif;
+            font-size: .875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .map-placeholder i { color: var(--accent-blue); font-size: 1.5rem; }
+
+        /* FAQ row */
+        .faq-section {
+            padding: 4rem 0 6rem;
+            background: var(--bg-section);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem 1.75rem;
+            transition: border-color .25s, box-shadow .25s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(74,144,226,.3);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-item h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: .625rem;
+            display: flex;
+            align-items: flex-start;
+            gap: .625rem;
+        }
+
+        .faq-item h4 i {
+            color: var(--accent-blue);
+            font-size: .85rem;
+            flex-shrink: 0;
+            margin-top: .15rem;
+        }
+
+        .faq-item p {
+            font-family: 'Inter', sans-serif;
+            font-size: .875rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        @media (max-width: 768px) {
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+
+        body.dark-mode .faq-item { background: var(--bg-card); border-color: var(--border-color); }
+        body.dark-mode .map-placeholder { background: rgba(13,22,37,.8); }
+        body.dark-mode .availability-banner { background: rgba(34,197,94,.06); }
+    </style>
 </head>
 <body>
+
 <div id="scroll-progress"></div>
 
-<nav class="navbar" id="navbar">
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
-        <a href="index.html" class="logo">Sohel<span class="logo-dot">.</span></a>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="projects.html" class="nav-link">Projects</a></li>
-            <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        <a href="index.html" class="logo" aria-label="Sohel Portfolio Home">Sohel<span class="logo-dot">.</span></a>
+
+        <ul class="nav-menu" id="navMenu" role="list">
+            <li role="listitem"><a href="index.html"    class="nav-link">Home</a></li>
+            <li role="listitem"><a href="about.html"    class="nav-link">About</a></li>
+            <li role="listitem"><a href="projects.html" class="nav-link">Projects</a></li>
+            <li role="listitem"><a href="contact.html"  class="nav-link active">Contact</a></li>
         </ul>
+
         <div class="navbar-controls">
-            <label class="theme-toggle" for="themeCheckbox">
+            <label class="theme-toggle" for="themeCheckbox" aria-label="Toggle dark mode">
                 <input type="checkbox" id="themeCheckbox">
-                <span class="toggle-track">
-                    <span class="toggle-thumb"></span>
-                </span>
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
                 <span class="toggle-label">Dark</span>
             </label>
-            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </div>
 </nav>
 
-<section class="page-hero">
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero" aria-labelledby="contact-page-heading">
     <div class="container">
         <span class="page-tag">Get In Touch</span>
-        <h1 class="page-title">Let's Work Together</h1>
-        <p class="page-subtitle">Have a project in mind? I would love to collaborate and build impactful digital solutions together.</p>
+        <h1 class="page-title" id="contact-page-heading">Let's Work Together</h1>
+        <p class="page-subtitle">
+            Have a project idea, freelance opportunity, or just want to say hello?
+            I'd love to connect and explore how we can build something great together.
+        </p>
     </div>
 </section>
 
-<section class="contact-main">
+<!-- ========== CONTACT MAIN ========== -->
+<section class="contact-main" aria-labelledby="contact-form-heading">
     <div class="container">
         <div class="contact-wrapper">
 
+            <!-- Left — Info -->
             <div class="contact-left">
+
+                <div>
+                    <span class="availability-banner" role="status" aria-live="polite">
+                        <span class="avail-dot" aria-hidden="true"></span>
+                        Available for Freelance &amp; Full-time Roles
+                    </span>
+
+                    <p class="contact-note">
+                        I typically respond within <strong>24 – 48 hours</strong>. For urgent inquiries,
+                        email is the fastest way to reach me.
+                    </p>
+                </div>
+
+                <!-- Info cards -->
                 <div class="contact-info-cards">
                     <div class="info-card">
-                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="info-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
                         <div class="info-content">
                             <h4>Email</h4>
-                            <a href="/cdn-cgi/l/email-protection#99eaf6f1fcf5a8aea9ada9add9fef4f8f0f5b7faf6f4"><span class="__cf_email__" data-cfemail="f98a96919c95c8cec9cdc9cdb99e94989095d79a9694">[email&#160;protected]</span></a>
+                            <a href="mailto:sohel170404@gmail.com">sohel170404@gmail.com</a>
                         </div>
                     </div>
+
                     <div class="info-card">
-                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <div class="info-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
                         <div class="info-content">
                             <h4>Phone</h4>
-                            <a href="tel:+919000000000">+91 90000 00000</a>
+                            <a href="tel:+919316434177">+91 93164 34177</a>
                         </div>
                     </div>
+
                     <div class="info-card">
-                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div class="info-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
                         <div class="info-content">
                             <h4>Working Hours</h4>
-                            <p>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                            <p>Mon – Sat &nbsp;·&nbsp; 9:00 AM – 7:00 PM IST</p>
                         </div>
                     </div>
+
                     <div class="info-card">
-                        <div class="info-icon"><i class="fas fa-location-dot"></i></div>
+                        <div class="info-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="info-content">
                             <h4>Location</h4>
-                            <p>Maninagar, Ahmedabad-Gujarat, India</p>
+                            <p>Ahmadabad, Gujarat, India</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="social-connect">
+                <!-- Social -->
+                <div class="social-connect" aria-label="Social media profiles">
                     <h4>Connect With Me</h4>
                     <div class="social-icons">
-                        <a href="https://github.com/mansurisohel" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://twitter.com/" target="_blank" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://instagram.com/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/mansurisohel"
+                           class="social-icon" target="_blank" rel="noopener" aria-label="GitHub Profile">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a"
+                           class="social-icon" target="_blank" rel="noopener" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://twitter.com/"
+                           class="social-icon" target="_blank" rel="noopener" aria-label="X (Twitter) Profile">
+                            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://instagram.com/"
+                           class="social-icon" target="_blank" rel="noopener" aria-label="Instagram Profile">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
 
+                <!-- Map stub -->
+                <div class="map-placeholder" aria-label="Location: Surat, Gujarat, India">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    <span>Ahmadabad, Gujarat, India</span>
+                </div>
+
+            </div><!-- /contact-left -->
+
+            <!-- Right — Form -->
             <div class="contact-right">
                 <div class="contact-form-wrapper">
-                    <h2>Send Me a Message</h2>
-                    <p>Fill out the form below and I will get back to you as soon as possible.</p>
+                    <h2 id="contact-form-heading">Send Me a Message</h2>
+                    <p>Fill out the form below and I'll get back to you as soon as possible.</p>
 
-                    <form class="contact-form" id="contactForm" novalidate>
+                    <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="firstName">First Name *</label>
-                                <input type="text" id="firstName" name="firstName" placeholder="John">
+                                <label for="firstName">First Name <span aria-hidden="true" style="color:#ef4444;">*</span></label>
+                                <input type="text" id="firstName" name="firstName"
+                                       placeholder="John" autocomplete="given-name"
+                                       required aria-required="true">
+                                <span class="field-error" id="firstName-err" role="alert" aria-live="polite"></span>
                             </div>
                             <div class="form-group">
-                                <label for="lastName">Last Name *</label>
-                                <input type="text" id="lastName" name="lastName" placeholder="Doe">
+                                <label for="lastName">Last Name <span aria-hidden="true" style="color:#ef4444;">*</span></label>
+                                <input type="text" id="lastName" name="lastName"
+                                       placeholder="Doe" autocomplete="family-name"
+                                       required aria-required="true">
+                                <span class="field-error" id="lastName-err" role="alert" aria-live="polite"></span>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" placeholder="john@example.com">
+                                <label for="email">Email Address <span aria-hidden="true" style="color:#ef4444;">*</span></label>
+                                <input type="email" id="email" name="email"
+                                       placeholder="john@example.com" autocomplete="email"
+                                       required aria-required="true">
+                                <span class="field-error" id="email-err" role="alert" aria-live="polite"></span>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000">
+                                <input type="tel" id="phone" name="phone"
+                                       placeholder="+91 00000 00000" autocomplete="tel">
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="subject">Subject *</label>
-                            <input type="text" id="subject" name="subject" placeholder="Project inquiry...">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..."></textarea>
+                            <label for="subject">Subject <span aria-hidden="true" style="color:#ef4444;">*</span></label>
+                            <input type="text" id="subject" name="subject"
+                                   placeholder="Project inquiry, collaboration, etc."
+                                   required aria-required="true">
+                            <span class="field-error" id="subject-err" role="alert" aria-live="polite"></span>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-submit">
-                            <i class="fas fa-paper-plane"></i> Send Message
+                        <div class="form-group">
+                            <label for="message">Message <span aria-hidden="true" style="color:#ef4444;">*</span></label>
+                            <textarea id="message" name="message" rows="6"
+                                      placeholder="Tell me about your project, timeline, and budget..."
+                                      maxlength="1000"
+                                      required aria-required="true"
+                                      aria-describedby="msg-counter"></textarea>
+                            <div class="char-counter" id="msg-counter" aria-live="polite">0 / 1000</div>
+                            <span class="field-error" id="message-err" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            Send Message
                         </button>
 
-                        <div class="form-success-msg" id="successMsg">
-                            <i class="fas fa-check-circle"></i>
-                            &nbsp;Message sent successfully! I'll get back to you soon.
+                        <div class="form-success-msg" id="successMsg" role="status" aria-live="polite">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            Message sent successfully! I'll get back to you within 24–48 hours.
                         </div>
+
                     </form>
                 </div>
-            </div>
+            </div><!-- /contact-right -->
 
         </div>
     </div>
 </section>
 
-<footer class="footer">
+<!-- ========== FAQ ========== -->
+<section class="faq-section" aria-labelledby="faq-heading">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">FAQ</span>
+            <h2 class="section-title" id="faq-heading">Common Questions</h2>
+        </div>
+
+        <div class="faq-grid">
+            <article class="faq-item">
+                <h4><i class="fas fa-question-circle" aria-hidden="true"></i> What type of projects do you take?</h4>
+                <p>Frontend projects, full-stack web apps, landing pages, portfolio sites, dashboard UIs, and API integrations. I'm also open to AI/ML integrated web projects.</p>
+            </article>
+
+            <article class="faq-item">
+                <h4><i class="fas fa-clock" aria-hidden="true"></i> What is your typical response time?</h4>
+                <p>I respond to all inquiries within 24–48 hours on business days. For urgent matters, phone is the fastest option.</p>
+            </article>
+
+            <article class="faq-item">
+                <h4><i class="fas fa-rupee-sign" aria-hidden="true"></i> Do you offer flexible pricing?</h4>
+                <p>Yes — pricing depends on project scope, complexity, and timeline. I'm happy to discuss a budget that works for both sides.</p>
+            </article>
+
+            <article class="faq-item">
+                <h4><i class="fas fa-globe" aria-hidden="true"></i> Do you work with international clients?</h4>
+                <p>Absolutely. I work remotely with clients worldwide and can coordinate across different time zones effectively.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer" role="contentinfo">
     <div class="container">
         <div class="footer-content">
+
             <div class="footer-col">
                 <h3>Sohel.</h3>
-                <p>Frontend Developer passionate about building scalable and user-friendly web applications.</p>
+                <p>Frontend Developer passionate about building scalable, user-friendly web applications with clean, maintainable code.</p>
+                <div class="social-links" aria-label="Social media links">
+                    <a href="https://github.com/mansurisohel" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
+
             <div class="footer-col">
-                <h4>Quick Links</h4>
+                <h4>Navigation</h4>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>About</a></li>
+                    <li><a href="projects.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Projects</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Contact</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">UI Design</a></li>
-                    <li><a href="#">Full Stack Apps</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Web Development</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>UI / UX Design</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Backend Integration</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Full Stack Apps</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
-                <h4>Follow Me</h4>
-                <div class="social-links">
-                    <a href="https://github.com/mansurisohel" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                </div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>
+                        <a href="mailto:sohel170404@gmail.com">
+                            <i class="fas fa-envelope" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>sohel170404@gmail.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+919316434177">
+                            <i class="fas fa-phone" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>+91 93164 34177
+                        </a>
+                    </li>
+                    <li>
+                        <span style="color:rgba(255,255,255,0.58);font-size:.88rem;">
+                            <i class="fas fa-map-marker-alt" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>Ahmadabad, Gujarat, India
+                        </span>
+                    </li>
+                </ul>
             </div>
+
         </div>
-        <div class="footer-bottom">© 2026 Mansuri Sohel. All Rights Reserved.</div>
+
+        <div class="footer-bottom">
+            &copy; 2026 Mansuri Sohel. Crafted with <i class="fas fa-heart" style="color:var(--accent-blue);font-size:.75rem;margin:0 .2rem;"></i> and clean code. All Rights Reserved.
+        </div>
     </div>
 </footer>
-
-<div class="overlay" id="overlay"></div>
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+<button class="back-to-top" id="backToTop" aria-label="Scroll back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
 </button>
 
 <script src="main.js"></script>
 <script src="contact-validation.js"></script>
-
 <script>
+/* Scroll progress */
 (function(){
     var bar = document.getElementById('scroll-progress');
     if(!bar) return;
     window.addEventListener('scroll', function(){
-        var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        bar.style.width = Math.min(scrolled, 100) + '%';
+        var s = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        bar.style.width = Math.min(s, 100) + '%';
     }, {passive:true});
-})();
+}());
+
+/* Character counter */
+(function(){
+    var ta      = document.getElementById('message');
+    var counter = document.getElementById('msg-counter');
+    if(!ta || !counter) return;
+    ta.addEventListener('input', function(){
+        counter.textContent = ta.value.length + ' / 1000';
+    });
+}());
 </script>
 </body>
 </html>

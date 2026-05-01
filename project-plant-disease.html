@@ -1,419 +1,778 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Plant Disease Detection - Mansuri Sohel</title>
-    
-    <!-- Font Awesome -->
+    <meta name="description" content="Smart Plant Disease Detection System — AI-powered web app using deep learning to detect plant diseases with over 93% accuracy.">
+    <title>Plant Disease Detection | Mansuri Sohel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="style.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ── Project Detail page shared styles ───────────────── */
 
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Back button */
+        .project-back-bar {
+            padding: 6.5rem 0 0;
+            background: var(--bg-body);
         }
 
         .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
+            gap: .5rem;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            font-size: .875rem;
+            color: var(--text-secondary);
+            padding: .6rem 1.25rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 100px;
+            transition: all .22s ease;
             margin-bottom: 2rem;
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-5px);
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: translateX(-4px);
         }
 
-        .project-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .project-badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            backdrop-filter: blur(10px);
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .project-description {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .video-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .video-container {
+        /* Project hero */
+        .project-hero {
+            padding: 3rem 0 5rem;
+            background: var(--bg-body);
             position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            border-radius: 15px;
             overflow: hidden;
-            background: #000;
         }
 
-        .video-container video {
+        .project-hero::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 15% 50%, rgba(74,144,226,.08) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 30%, rgba(11,31,58,.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .project-hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: .8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a { color: var(--accent-blue); transition: opacity .2s; }
+        .breadcrumb a:hover { opacity: .8; }
+        .breadcrumb i { font-size: .65rem; }
+
+        /* Detail Hero text */
+        .project-hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .625rem;
+            margin-bottom: 1.25rem;
+            align-items: center;
+        }
+
+        .detail-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .3rem .95rem;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+
+        .badge-ai   { background: rgba(74,144,226,.12); color: var(--accent-blue); }
+        .badge-year { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-muted); }
+
+        .project-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.18;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-hero p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Action buttons in hero */
+        .detail-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Cover image */
+        .project-cover {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+            aspect-ratio: 16 / 10;
+            background: var(--gradient-subtle);
+        }
+
+        .project-cover img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            transition: transform .5s cubic-bezier(.22,1,.36,1);
         }
 
-        .project-details {
+        .project-cover:hover img { transform: scale(1.04); }
+
+        /* Stats bar */
+        .project-stats-bar {
+            background: var(--bg-section);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-inner {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
+            divide-x: 1px solid var(--border-color);
+        }
+
+        .stat-unit {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .stat-unit:last-child { border-right: none; }
+
+        .stat-unit h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: .3rem;
+            letter-spacing: -0.025em;
+        }
+
+        .stat-unit p {
+            font-family: 'Inter', sans-serif;
+            font-size: .8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Content sections */
+        .project-content {
+            padding: 5rem 0;
+            background: var(--bg-body);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            margin-top: 3rem;
+            margin-bottom: 3rem;
         }
 
         .detail-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 2.25rem;
+            transition: transform .3s ease, box-shadow .3s ease, border-color .25s;
         }
 
         .detail-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(74,144,226,.25);
         }
 
-        .detail-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        .detail-card-head {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: .875rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .detail-card i {
-            font-size: 1.75rem;
-        }
-
-        .tech-stack {
+        .detail-card-icon {
+            width: 46px; height: 46px;
+            background: var(--accent-light);
+            border-radius: 12px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .tech-tag {
-            padding: 0.5rem 1.25rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .features-list {
-            list-style: none;
-        }
-
-        .features-list li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .features-list li:last-child {
-            border-bottom: none;
-        }
-
-        .features-list li::before {
-            content: "✓";
-            margin-right: 0.75rem;
-            color: #4ade80;
-            font-weight: bold;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
+            align-items: center;
             justify-content: center;
-            margin-top: 3rem;
-            flex-wrap: wrap;
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
 
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+        .detail-card-head h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .detail-card p {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: .93rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .feature-list li {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            font-size: .93rem;
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+            line-height: 1.65;
+        }
+
+        .feature-list li::before {
+            content: '';
+            width: 8px; height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: .4rem;
+        }
+
+        /* Tech stack full list */
+        .tech-section { padding: 0 0 5rem; background: var(--bg-body); }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+        }
+
+        .tech-pill {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem;
+            padding: .6rem 1.25rem;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-color);
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: .875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all .22s ease;
         }
 
-        .btn-primary {
-            background: white;
-            color: #667eea;
+        .tech-pill i { color: var(--accent-blue); font-size: .85rem; }
+
+        .tech-pill:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        /* Video section */
+        .project-video-section {
+            padding: 0 0 5rem;
+            background: var(--bg-body);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: #667eea;
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            h1 { font-size: 2rem; }
-            .project-description { font-size: 1rem; }
-            .video-section { padding: 1rem; }
-            .action-buttons { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-        }
-
-        /* Back to Top */
-        .back-to-top {
-            position: fixed; bottom: 2rem; right: 2rem;
-            width: 50px; height: 50px;
-            background: rgba(255,255,255,0.25); backdrop-filter: blur(10px);
-            color: white; border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 50%; cursor: pointer; font-size: 1.1rem;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transform: translateY(20px);
-            transition: all 0.3s ease; z-index: 9999;
-        }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { background: rgba(255,255,255,0.4); transform: translateY(-5px); }
-
-        /* Dark Mode Toggle */
-        .dark-toggle {
-            position: fixed; top: 1rem; right: 1rem;
-            background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.4);
-            color: white; border-radius: 50px; padding: 0.5rem 1rem;
-            cursor: pointer; font-size: 0.9rem; z-index: 9999;
-            transition: all 0.3s ease;
-        }
-        .dark-toggle:hover { background: rgba(255,255,255,0.3); }
-
-        /* Dark Mode */
-        body.page-dark { filter: brightness(0.85) saturate(0.8); }
-    
-        /* Pill Toggle Switch */
-        .theme-toggle-wrap {
-            position: fixed;
-            top: 1.2rem;
-            right: 1.5rem;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1rem 0.5rem 0.7rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        .theme-toggle-wrap label {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .theme-toggle-wrap input[type="checkbox"] { display: none; }
-        .toggle-track {
+        .video-container {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+            aspect-ratio: 16 / 9;
+            background: var(--navy);
             position: relative;
-            width: 48px;
-            height: 26px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50px;
+        }
+
+        .video-container iframe {
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            height: 100%;
+            min-height: 320px;
+            color: rgba(255,255,255,.6);
+            font-family: 'Inter', sans-serif;
+            font-size: .9rem;
+        }
+
+        .video-placeholder i { font-size: 3.5rem; opacity: .4; }
+
+        /* Nav between projects */
+        .project-nav {
+            padding: 3rem 0 6rem;
+            background: var(--bg-body);
+        }
+
+        .project-nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-proj-btn {
+            display: flex;
+            align-items: center;
+            gap: .875rem;
+            padding: 1.25rem 1.75rem;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: .875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all .25s ease;
+            text-decoration: none;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .nav-proj-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-proj-btn.prev { justify-content: flex-start; }
+        .nav-proj-btn.next { justify-content: flex-end; text-align: right; }
+
+        .nav-proj-btn i { font-size: 1.1rem; flex-shrink: 0; }
+
+        .nav-proj-label {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .nav-proj-label small {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-bottom: .15rem;
+        }
+
+        .nav-proj-label span {
+            font-weight: 700;
+            font-size: .9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .proj-nav-center {
             flex-shrink: 0;
-            transition: background 0.3s ease;
         }
-        .toggle-thumb {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 20px;
-            height: 20px;
-            background: #ffffff;
-            border-radius: 50%;
-            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        .theme-toggle-wrap input:checked + .toggle-track { background: rgba(79,70,229,0.8); }
-        .theme-toggle-wrap input:checked + .toggle-track .toggle-thumb { transform: translateX(22px); background: #e0e7ff; }
-        .toggle-lbl { font-size: 0.82rem; font-weight: 600; color: white; letter-spacing: 0.03em; }
 
-        /* Back To Top */
-        .back-to-top {
-            position: fixed; bottom: 2rem; right: 2rem;
-            width: 48px; height: 48px;
-            background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
-            color: white; border: 2px solid rgba(255,255,255,0.45);
-            border-radius: 50%; cursor: pointer; font-size: 1.1rem;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transform: translateY(15px);
-            transition: all 0.3s ease; z-index: 9999;
+        @media (max-width: 900px) {
+            .project-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .project-hero h1 { font-size: 2rem; }
+            .content-grid { grid-template-columns: 1fr; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .stat-unit:nth-child(2) { border-right: none; }
+            .stat-unit:nth-child(3) { border-top: 1px solid var(--border-color); }
+            .stat-unit:nth-child(4) { border-top: 1px solid var(--border-color); }
         }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { background: rgba(255,255,255,0.35); transform: translateY(-4px); }
 
-        body.page-dark { filter: brightness(0.82) saturate(0.75); }
+        @media (max-width: 480px) {
+            .project-hero h1 { font-size: 1.75rem; }
+            .detail-actions { flex-direction: column; }
+            .detail-actions .btn { width: 100%; text-align: center; }
+            .nav-proj-btn { flex: none; width: 100%; }
+            .nav-proj-btn.prev, .nav-proj-btn.next { justify-content: flex-start; text-align: left; }
+        }
+
+        body.dark-mode .detail-card { background: var(--bg-card); border-color: var(--border-color); }
+        body.dark-mode .tech-pill { background: var(--bg-card); border-color: var(--border-color); }
+        body.dark-mode .nav-proj-btn { background: var(--bg-card); border-color: var(--border-color); }
+        body.dark-mode .project-stats-bar { background: var(--bg-section); border-color: var(--border-color); }
+        body.dark-mode .stat-unit { border-right-color: var(--border-color); }
     </style>
 </head>
 <body>
-<div class="theme-toggle-wrap">
-    <label for="themeCheckbox">
-        <input type="checkbox" id="themeCheckbox">
-        <span class="toggle-track"><span class="toggle-thumb"></span></span>
-        <span class="toggle-lbl">Dark</span>
-    </label>
-</div>
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
-</button>
 
-    
-    
+<div id="scroll-progress"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
-        <a href="projects.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Back to Projects
-        </a>
-
-        <div class="project-header">
-            <span class="project-badge">AI/ML Project</span>
-            <h1>Smart Plant Disease Detection System</h1>
-            <p class="project-description">
-                An AI-powered web application that detects plant diseases using deep learning models trained on thousands of images.
-            </p>
+        <a href="index.html" class="logo">Sohel<span class="logo-dot">.</span></a>
+        <ul class="nav-menu" id="navMenu" role="list">
+            <li><a href="index.html"    class="nav-link">Home</a></li>
+            <li><a href="about.html"    class="nav-link">About</a></li>
+            <li><a href="projects.html" class="nav-link active">Projects</a></li>
+            <li><a href="contact.html"  class="nav-link">Contact</a></li>
+        </ul>
+        <div class="navbar-controls">
+            <label class="theme-toggle" for="themeCheckbox" aria-label="Toggle dark mode">
+                <input type="checkbox" id="themeCheckbox">
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                <span class="toggle-label">Dark</span>
+            </label>
+            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
+    </div>
+</nav>
 
-        <div class="video-section">
-            <div class="video-container">
+<!-- BACK BAR -->
+<div class="project-back-bar">
+    <div class="container">
+        <a href="projects.html" class="back-btn" aria-label="Back to all projects">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i> All Projects
+        </a>
+    </div>
+</div>
+
+<!-- PROJECT HERO -->
+<section class="project-hero" aria-labelledby="proj-detail-heading">
+    <div class="container">
+        <div class="project-hero-inner">
+
+            <!-- Left text -->
+            <div>
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <a href="projects.html">Projects</a>
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <span>Plant Disease Detection</span>
+                </nav>
+
+                <div class="project-hero-meta">
+                    <span class="detail-badge badge-ai"><i class="fas fa-brain" aria-hidden="true"></i> AI &amp; ML</span>
+                    <span class="detail-badge badge-year">2024 – 2025</span>
+                </div>
+
+                <h1 id="proj-detail-heading">Smart Plant Disease Detection System</h1>
+
+                <p>
+                    An AI-powered web application that detects plant diseases from leaf images using deep
+                    learning. Trained on 87,000+ images across 38 disease classes, achieving over 93%
+                    accuracy with real-time predictions.
+                </p>
+
+                <div class="project-tech-stack" style="margin-bottom:1.75rem;" aria-label="Technologies">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">Keras</span>
+                    <span class="tech-tag">Google Colab</span>
+                    <span class="tech-tag">Kaggle Dataset</span>
+                </div>
+
+                <div class="detail-actions">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-globe" aria-hidden="true"></i> Live Demo
+                    </a>
+                    <a href="https://github.com/mansurisohel" class="btn btn-outline" target="_blank" rel="noopener">
+                        <i class="fab fa-github" aria-hidden="true"></i> Source Code
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right — Cover image -->
+            <div class="project-cover">
+                <img src="./images/spdds.png"
+                     alt="Smart Plant Disease Detection System dashboard"
+                     loading="eager">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="project-stats-bar" role="region" aria-label="Project statistics">
+    <div class="container">
+        <div class="stats-inner">
+            <div class="stat-unit">
+                <h3>93%+</h3>
+                <p>Detection Accuracy</p>
+            </div>
+            <div class="stat-unit">
+                <h3>38</h3>
+                <p>Disease Classes</p>
+            </div>
+            <div class="stat-unit">
+                <h3>87K+</h3>
+                <p>Training Images</p>
+            </div>
+            <div class="stat-unit">
+                <h3>&lt;2s</h3>
+                <p>Prediction Time</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<section class="project-content" aria-label="Project details">
+    <div class="container">
+        <div class="content-grid">
+
+            <article class="detail-card">
+                <div class="detail-card-head">
+                    <div class="detail-card-icon" aria-hidden="true"><i class="fas fa-bullseye"></i></div>
+                    <h3>Project Overview</h3>
+                </div>
+                <p>
+                    This project addresses a critical challenge in agriculture — early and accurate
+                    detection of plant diseases. Using a CNN trained in Google Colab on the PlantVillage
+                    Kaggle dataset, the system classifies leaf images into 38 categories of diseases
+                    and healthy states. The trained model is deployed in a web interface for real-time use.
+                </p>
+            </article>
+
+            <article class="detail-card">
+                <div class="detail-card-head">
+                    <div class="detail-card-icon" aria-hidden="true"><i class="fas fa-list-check"></i></div>
+                    <h3>Key Features</h3>
+                </div>
+                <ul class="feature-list" role="list">
+                    <li>Real-time image upload and disease prediction</li>
+                    <li>Supports 38 distinct disease &amp; health classes</li>
+                    <li>Deep learning CNN architecture (VGG / ResNet backbone)</li>
+                    <li>Accuracy above 93% on the validation set</li>
+                    <li>Prediction response time under 2 seconds</li>
+                    <li>User-friendly web interface accessible on mobile</li>
+                </ul>
+            </article>
+
+            <article class="detail-card">
+                <div class="detail-card-head">
+                    <div class="detail-card-icon" aria-hidden="true"><i class="fas fa-cogs"></i></div>
+                    <h3>Challenges &amp; Solutions</h3>
+                </div>
+                <p>
+                    The main challenge was class imbalance in the dataset. This was addressed using
+                    data augmentation (flipping, rotation, zoom) and weighted class sampling during
+                    training. Overfitting was controlled with dropout layers and early stopping callbacks.
+                </p>
+            </article>
+
+            <article class="detail-card">
+                <div class="detail-card-head">
+                    <div class="detail-card-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+                    <h3>Impact &amp; Results</h3>
+                </div>
+                <p>
+                    Farmers and agronomists can now identify crop diseases early, reducing crop losses
+                    by enabling timely interventions. The model's 93%+ accuracy significantly outperforms
+                    traditional manual inspection methods, making it a viable decision-support tool
+                    for real-world agricultural use.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- TECH STACK DETAIL -->
+<section class="tech-section" aria-labelledby="tech-detail-heading">
+    <div class="container">
+        <div class="section-header" style="text-align:left;margin-bottom:2rem;">
+            <span class="section-tag">Stack</span>
+            <h2 class="section-title" id="tech-detail-heading" style="font-size:1.75rem;">Full Technology Stack</h2>
+        </div>
+        <div class="section-header" style="text-align:left;margin-bottom:2rem;">
+            <div class="tech-grid">
+                <span class="tech-pill"><i class="fab fa-python"></i> Python 3.10</span>
+                <span class="tech-pill"><i class="fas fa-brain"></i> TensorFlow 2.x</span>
+                <span class="tech-pill"><i class="fas fa-layer-group"></i> Keras</span>
+                <span class="tech-pill"><i class="fas fa-table"></i> NumPy &amp; Pandas</span>
+                <span class="tech-pill"><i class="fas fa-chart-bar"></i> Matplotlib</span>
+                <span class="tech-pill"><i class="fab fa-google"></i> Google Colab</span>
+                <span class="tech-pill"><i class="fas fa-database"></i> Kaggle PlantVillage</span>
+                <span class="tech-pill"><i class="fas fa-code"></i> HTML / CSS / JS</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VIDEO DEMO -->
+<section class="project-video-section" aria-labelledby="video-heading">
+    <div class="container">
+        <div class="section-header" style="text-align:left;margin-bottom:1.5rem;">
+            <span class="section-tag">Demo</span>
+            <h2 class="section-title" id="video-heading" style="font-size:1.75rem;">Project Walkthrough</h2>
+        </div>
+        <div class="video-container" role="region" aria-label="Project demo video">
+            <div class="video-placeholder">
                 <video width="100%" controls autoplay muted>
                     <source src="./images/videos/pr-vid-1.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="project-details">
-            <div class="detail-card">
-                <h3><i class="fas fa-laptop-code"></i> Technologies Used</h3>
-                <div class="tech-stack">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">TensorFlow</span>
-                    <span class="tech-tag">Keras</span>
-                    <span class="tech-tag">Kaggle</span>
-                    <span class="tech-tag">Google Colab</span>
+<!-- PROJECT NAV -->
+<div class="project-nav">
+    <div class="container">
+        <div class="project-nav-inner">
+            <a href="project-dental-care.html" class="nav-proj-btn prev" aria-label="Previous project: Dental Care">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                <div class="nav-proj-label">
+                    <small>Previous Project</small>
+                    <span>Dental Care</span>
                 </div>
-            </div>
-
-            <div class="detail-card">
-                <h3><i class="fas fa-list-check"></i> Key Features</h3>
-                <ul class="features-list">
-                    <li>Real-time disease detection</li>
-                    <li>Deep learning image classification</li>
-                    <li>User-friendly web interface</li>
-                    <li>Multiple crop support</li>
-                    <li>Accuracy over 90%</li>
-                </ul>
-            </div>
-
-            <div class="detail-card">
-                <h3><i class="fas fa-bullseye"></i> Project Goals</h3>
-                <p style="line-height: 1.8;">
-                    Help farmers quickly identify plant diseases and take preventive measures. 
-                    The system uses advanced machine learning to analyze plant leaf images and 
-                    provide accurate disease diagnoses, enabling early intervention and better crop management.
-                </p>
-            </div>
-        </div>
-
-        <div class="action-buttons">
-            <a href="#" class="btn btn-primary">
-                <i class="fas fa-globe"></i> Live Demo
             </a>
-            <a href="#" class="btn btn-outline">
-                <i class="fab fa-github"></i> View Code
-            </a>
-            <a href="projects.html" class="btn btn-outline">
-                <i class="fas fa-folder-open"></i> More Projects
+
+            <div class="proj-nav-center">
+                <a href="projects.html" class="btn btn-outline" style="padding:.7rem 1.5rem;font-size:.85rem;">
+                    <i class="fas fa-th-large" aria-hidden="true"></i> All Projects
+                </a>
+            </div>
+
+            <a href="project-child-safety.html" class="nav-proj-btn next" aria-label="Next project: Child Safety System">
+                <div class="nav-proj-label">
+                    <small>Next Project</small>
+                    <span>Child Safety</span>
+                </div>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
             </a>
         </div>
     </div>
+</div>
 
-    
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
 
+            <div class="footer-col">
+                <h3>Sohel.</h3>
+                <p>Frontend Developer passionate about building scalable, user-friendly web applications with clean, maintainable code.</p>
+                <div class="social-links" aria-label="Social media links">
+                    <a href="https://github.com/mansurisohel" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>About</a></li>
+                    <li><a href="projects.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Projects</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Web Development</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>UI / UX Design</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Backend Integration</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Full Stack Apps</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li>
+                        <a href="mailto:sohel170404@gmail.com">
+                            <i class="fas fa-envelope" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>sohel170404@gmail.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+919316434177">
+                            <i class="fas fa-phone" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>+91 93164 34177
+                        </a>
+                    </li>
+                    <li>
+                        <span style="color:rgba(255,255,255,0.58);font-size:.88rem;">
+                            <i class="fas fa-map-marker-alt" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>Ahmadabad, Gujarat, India
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2026 Mansuri Sohel. Crafted with <i class="fas fa-heart" style="color:var(--accent-blue);font-size:.75rem;margin:0 .2rem;"></i> and clean code. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+<button class="back-to-top" id="backToTop" aria-label="Scroll back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script src="main.js"></script>
 <script>
 (function(){
-    var cb = document.getElementById('themeCheckbox');
-    var body = document.body;
-    if(localStorage.getItem('darkMode') === 'enabled'){
-        body.classList.add('page-dark');
-        if(cb) cb.checked = true;
-    }
-    if(cb){
-        cb.addEventListener('change', function(){
-            body.classList.toggle('page-dark', this.checked);
-            localStorage.setItem('darkMode', this.checked ? 'enabled' : 'disabled');
-        });
-    }
+    var bar = document.getElementById('scroll-progress');
+    if(!bar) return;
     window.addEventListener('scroll', function(){
-        var btn = document.getElementById('backToTop');
-        if(btn) btn.classList.toggle('visible', window.scrollY > 300);
-    });
-    var btt = document.getElementById('backToTop');
-    if(btt) btt.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
-})();
+        var s = (window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+        bar.style.width = Math.min(s,100)+'%';
+    },{passive:true});
+}());
 </script>
-
 </body>
 </html>

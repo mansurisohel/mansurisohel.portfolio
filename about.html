@@ -2,75 +2,247 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About | Mansuri Sohel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Mansuri Sohel — Frontend Developer. Learn about my skills, journey, and passion for building impactful web solutions.">
+    <title>About | Mansuri Sohel</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- CSS -->
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ── About page inline enhancements ──────────────────── */
+
+        /* Chip badges inside floating cards */
+        .card-chip {
+            display: inline-block;
+            margin-top: .5rem;
+            padding: .25rem .75rem;
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+        }
+
+        /* Skill percentage label */
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-pct {
+            font-family: 'Inter', sans-serif;
+            font-size: .75rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            opacity: .85;
+        }
+
+        /* Divider used between about-text paragraphs */
+        .about-divider {
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+            margin: 1.75rem 0;
+        }
+
+        /* Highlight inline text in about paragraphs */
+        .about-text .accent-word {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* Subtle info row beneath About heading */
+        .about-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem 1.5rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .about-meta-item {
+            display: flex;
+            align-items: center;
+            gap: .45rem;
+            font-family: 'Inter', sans-serif;
+            font-size: .875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .about-meta-item i {
+            color: var(--accent-blue);
+            font-size: .85rem;
+            flex-shrink: 0;
+        }
+
+        /* Timeline icon badge */
+        .timeline-icon {
+            position: absolute;
+            left: -34px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Values row on about page */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.75rem 1.5rem;
+            text-align: center;
+            transition: transform .3s ease, box-shadow .3s ease, border-color .25s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(74,144,226,.3);
+        }
+
+        .value-icon {
+            font-size: 1.75rem;
+            color: var(--accent-blue);
+            margin-bottom: .875rem;
+        }
+
+        .value-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: .375rem;
+        }
+
+        .value-card p {
+            font-family: 'Inter', sans-serif;
+            font-size: .82rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .values-grid { grid-template-columns: 1fr; }
+            .about-meta { gap: .6rem 1rem; }
+        }
+
+        /* Dark mode for inline styles */
+        body.dark-mode .value-card { background: var(--bg-card); border-color: var(--border-color); }
+    </style>
 </head>
 <body>
+
 <div id="scroll-progress"></div>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar" id="navbar">
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
-        <a href="index.html" class="logo">Sohel<span class="logo-dot">.</span></a>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="about.html" class="nav-link active">About</a></li>
-            <li><a href="projects.html" class="nav-link">Projects</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <a href="index.html" class="logo" aria-label="Sohel Portfolio Home">Sohel<span class="logo-dot">.</span></a>
+
+        <ul class="nav-menu" id="navMenu" role="list">
+            <li role="listitem"><a href="index.html"    class="nav-link">Home</a></li>
+            <li role="listitem"><a href="about.html"    class="nav-link active">About</a></li>
+            <li role="listitem"><a href="projects.html" class="nav-link">Projects</a></li>
+            <li role="listitem"><a href="contact.html"  class="nav-link">Contact</a></li>
         </ul>
+
         <div class="navbar-controls">
-            <label class="theme-toggle" for="themeCheckbox">
+            <label class="theme-toggle" for="themeCheckbox" aria-label="Toggle dark mode">
                 <input type="checkbox" id="themeCheckbox">
                 <span class="toggle-track">
                     <span class="toggle-thumb"></span>
                 </span>
                 <span class="toggle-label">Dark</span>
             </label>
-            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </div>
 </nav>
 
-<!-- ================= PAGE HERO ================= -->
-<section class="page-hero">
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero" aria-labelledby="about-page-heading">
     <div class="container">
         <span class="page-tag">About Me</span>
-        <h1 class="page-title">Passionate About Creating Impactful Web Solutions</h1>
+        <h1 class="page-title" id="about-page-heading">
+            Passionate About Creating<br>Impactful Web Solutions
+        </h1>
         <p class="page-subtitle">
-            A dedicated frontend developer focused on building modern, responsive, and user-friendly digital experiences.
+            A dedicated frontend developer focused on building modern, responsive,
+            and user-friendly digital experiences that make a difference.
         </p>
     </div>
 </section>
 
-
-<!-- ================= HERO ================= -->
-<section class="hero">
-    <div class="hero-background"></div>
+<!-- ========== WHO AM I ========== -->
+<section class="hero" aria-labelledby="who-am-i-heading">
+    <div class="hero-background" aria-hidden="true"></div>
 
     <div class="container">
-        <div class="about-text">
-                <h2>Who Am I?</h2>
-                <p>
-                    I am a junior frontend developer with strong knowledge of HTML, CSS, JavaScript, 
-                    and React.js. I enjoy transforming ideas into interactive and scalable web applications.
-                </p>
-                <p>
-                    Currently, I am working on projects like a Car Rental Platform (DriveEase) 
-                    and an AI-based Smart Plant Disease Detection System.
-                </p>
-                <p>
-                    My goal is to grow into a full-stack developer and build impactful digital solutions.
-                </p>
 
-                
+        <!-- Left — Bio text -->
+        <div class="about-text">
+            <h2 id="who-am-i-heading">Who Am I?</h2>
+
+            <div class="about-meta">
+                <span class="about-meta-item">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    Ahmadabad, Gujarat, India
+                </span>
+                <span class="about-meta-item">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    B.Tech (C.E.)
+                </span>
+                <span class="about-meta-item">
+                    <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                    Frontend Developer
+                </span>
+                <span class="about-meta-item">
+                    <i class="fas fa-circle" style="font-size:.55rem;color:#22c55e;" aria-hidden="true"></i>
+                    Available for work
+                </span>
+            </div>
+
+            <p>
+                I am a junior <span class="accent-word">frontend developer</span> with solid knowledge of
+                HTML, CSS, JavaScript, and React.js. I enjoy transforming ideas into interactive and
+                scalable web applications that look great and feel intuitive to use.
+            </p>
+
+            <div class="about-divider" aria-hidden="true"></div>
+
+            <p>
+                Currently building projects like a <span class="accent-word">Car Rental Platform (DriveEase)</span>
+                and an <span class="accent-word">AI-based Smart Plant Disease Detection System</span>
+                — blending frontend craft with machine learning to solve real-world problems.
+            </p>
+
+            <p>
+                My goal is to grow into a <span class="accent-word">full-stack developer</span> and ship
+                impactful digital solutions. I believe in clean code, constant learning, and building things that matter.
+            </p>
+
+            <!-- Counter stats -->
             <div class="hero-stats">
                 <div class="stat-item">
                     <h3 data-counter="3" data-suffix="+">0+</h3>
@@ -86,187 +258,252 @@
                 </div>
             </div>
 
-                <div class="cta-buttons">
-                    <a href="projects.html" class="btn btn-primary">View My Work</a>
-                    <a href="contact.html" class="btn btn-outline">Contact Me</a>
-                </div>
-                
+            <!-- CTAs -->
+            <div class="cta-buttons">
+                <a href="projects.html" class="btn btn-primary">
+                    <i class="fas fa-briefcase" aria-hidden="true"></i> View My Work
+                </a>
+                <a href="contact.html" class="btn btn-outline">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i> Contact Me
+                </a>
             </div>
-        <!-- Floating Cards -->
-        <div class="hero-visual">
+        </div>
+
+        <!-- Right — Floating cards (hidden on mobile) -->
+        <div class="hero-visual" aria-hidden="true">
             <div class="floating-card card-1">
                 <div class="card-icon"><i class="fas fa-code"></i></div>
                 <h4>Clean Code</h4>
+                <span class="card-chip">Best Practices</span>
             </div>
 
             <div class="floating-card card-2">
                 <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
                 <h4>Responsive Design</h4>
+                <span class="card-chip">Mobile First</span>
             </div>
 
             <div class="floating-card card-3">
                 <div class="card-icon"><i class="fas fa-rocket"></i></div>
                 <h4>Fast Performance</h4>
+                <span class="card-chip">Optimised</span>
             </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ========== VALUES ========== -->
+<section class="services" aria-labelledby="values-heading" style="padding-top: 4rem; padding-bottom: 5rem;">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Core Values</span>
+            <h2 class="section-title" id="values-heading">What Drives My Work</h2>
+        </div>
+
+        <div class="values-grid">
+            <article class="value-card">
+                <div class="value-icon" aria-hidden="true"><i class="fas fa-feather-alt"></i></div>
+                <h4>Simplicity</h4>
+                <p>Writing clear, maintainable code that anyone can read and build upon.</p>
+            </article>
+
+            <article class="value-card">
+                <div class="value-icon" aria-hidden="true"><i class="fas fa-users"></i></div>
+                <h4>User Focus</h4>
+                <p>Designing every interface with the end user's experience at the centre.</p>
+            </article>
+
+            <article class="value-card">
+                <div class="value-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+                <h4>Continuous Growth</h4>
+                <p>Always learning new tools, patterns, and techniques to stay sharp.</p>
+            </article>
         </div>
     </div>
 </section>
 
-<!-- ================= SKILLS SECTION ================= -->
-<section class="skills-section">
+<!-- ========== SKILLS ========== -->
+<section class="skills-section" id="skills" aria-labelledby="skills-heading">
     <div class="container">
 
         <div class="section-header">
             <span class="section-tag">Skills</span>
-            <h2 class="section-title">Technical Expertise</h2>
+            <h2 class="section-title" id="skills-heading">Technical Expertise</h2>
         </div>
 
         <div class="skills-container">
 
+            <!-- Frontend Skills -->
             <div class="skill-category">
                 <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-code fa-2x"></i></div>
+                    <div class="skill-icon" aria-hidden="true"><i class="fas fa-code fa-2x"></i></div>
                     <h3>Frontend</h3>
                 </div>
 
-                <div class="skill-list">
-                    <div class="skill-item">
-                        <span class="skill-name">HTML & CSS</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
-                    </div>
+                <ul class="skill-list" style="list-style:none;">
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>HTML &amp; CSS</span>
+                            <span class="skill-pct">90%</span>
+                        </div>
+                        <div class="skill-bar" role="progressbar" aria-label="HTML &amp; CSS proficiency" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </li>
 
-                    <div class="skill-item">
-                        <span class="skill-name">JavaScript</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-                    </div>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript (ES6+)</span>
+                            <span class="skill-pct">85%</span>
+                        </div>
+                        <div class="skill-bar" role="progressbar" aria-label="JavaScript proficiency" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </li>
 
-                    <div class="skill-item">
-                        <span class="skill-name">Tailwind CSS</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 40%;"></div></div>
-                    </div>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Tailwind CSS</span>
+                            <span class="skill-pct">60%</span>
+                        </div>
+                        <div class="skill-bar" role="progressbar" aria-label="Tailwind CSS proficiency" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                            <div class="skill-progress" style="width: 60%;"></div>
+                        </div>
+                    </li>
 
-                    <div class="skill-item">
-                        <span class="skill-name">React.js</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 30%;"></div></div>
-                    </div>
-                </div>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>React.js</span>
+                            <span class="skill-pct">45%</span>
+                        </div>
+                        <div class="skill-bar" role="progressbar" aria-label="React.js proficiency" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                            <div class="skill-progress" style="width: 45%;"></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
+            <!-- Backend & Tools -->
             <div class="skill-category">
                 <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-server fa-2x"></i></div>
-                    <h3>Database & Tools</h3>
+                    <div class="skill-icon" aria-hidden="true"><i class="fas fa-server fa-2x"></i></div>
+                    <h3>Database &amp; Tools</h3>
                 </div>
 
-                <div class="skill-list">
-                    <div class="skill-item">
-                        <span class="skill-name">MySQL & SQL</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 70%;"></div></div>
-                    </div>
+                <ul class="skill-list" style="list-style:none;">
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>MySQL &amp; SQL</span>
+                            <span class="skill-pct">70%</span>
+                        </div>
+                        <div class="skill-bar" role="progressbar" aria-label="MySQL proficiency" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </li>
 
-                    <div class="skill-item">
-                        <span class="skill-name">MongoDB</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 65%;"></div></div>
-                    </div>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>MongoDB</span>
+                            <span class="skill-pct">65%</span>
+                        </div>
+                        <div class="skill-bar" role="progressbar" aria-label="MongoDB proficiency" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                            <div class="skill-progress" style="width: 65%;"></div>
+                        </div>
+                    </li>
 
-                    <div class="skill-item">
-                        <span class="skill-name">Git & GitHub</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-                    </div>
-                </div>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Git &amp; GitHub</span>
+                            <span class="skill-pct">85%</span>
+                        </div>
+                        <div class="skill-bar" role="progressbar" aria-label="Git proficiency" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </li>
+
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Python / TensorFlow</span>
+                            <span class="skill-pct">40%</span>
+                        </div>
+                        <div class="skill-bar" role="progressbar" aria-label="Python proficiency" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                            <div class="skill-progress" style="width: 40%;"></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
         </div>
     </div>
 </section>
 
-<!-- ================= TIMELINE SECTION ================= -->
-<section class="timeline-section">
+<!-- ========== TIMELINE ========== -->
+<section class="timeline-section" id="journey" aria-labelledby="timeline-heading">
     <div class="container">
 
         <div class="section-header">
             <span class="section-tag">Journey</span>
-            <h2 class="section-title">My Learning Path</h2>
+            <h2 class="section-title" id="timeline-heading">My Learning Path</h2>
         </div>
 
         <div class="timeline">
 
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
+            <article class="timeline-item">
+                <div class="timeline-dot" aria-hidden="true"></div>
                 <div class="timeline-content">
-                    <span class="timeline-date">2024 - 2025</span>
+                    <time class="timeline-date" datetime="2024">2024 – 2025</time>
                     <h3>Started Web Development</h3>
-                    <h4>Learning HTML, CSS & JavaScript</h4>
-                    <p>Built foundational projects and strengthened core frontend concepts.</p>
+                    <h4>Mastering HTML, CSS &amp; JavaScript</h4>
+                    <p>
+                        Built foundational projects and strengthened core frontend concepts —
+                        focusing on responsive layouts, semantic HTML, and modern CSS techniques.
+                    </p>
                 </div>
-            </div>
+            </article>
 
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
+            <article class="timeline-item">
+                <div class="timeline-dot" aria-hidden="true"></div>
                 <div class="timeline-content">
-                    <span class="timeline-date">2024 - Present</span>
-                    <h3>Start in Frontend with React</h3>
+                    <time class="timeline-date" datetime="2024">2024 – Present</time>
+                    <h3>Diving into React &amp; Full Stack</h3>
                     <h4>Project-Based Learning</h4>
-                    <p>Developed DriveEase and AI-based projects using modern frameworks.</p>
+                    <p>
+                        Developed <strong>DriveEase</strong> (car rental platform) and an <strong>AI-based Plant Disease
+                        Detection</strong> system using React.js, REST APIs, and Python — building real-world
+                        problem-solving skills.
+                    </p>
                 </div>
-            </div>
+            </article>
+
+            <article class="timeline-item">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div class="timeline-content">
+                    <time class="timeline-date" datetime="2025">2025 – Future</time>
+                    <h3>Full Stack Developer Goal</h3>
+                    <h4>Node.js, Databases &amp; Beyond</h4>
+                    <p>
+                        Expanding into backend development with Node.js and Express, deepening database
+                        knowledge, and aiming to deliver complete, production-grade applications independently.
+                    </p>
+                </div>
+            </article>
 
         </div>
-
     </div>
 </section>
 
-<!-- ================= CERTIFICATIONS SECTION ================= -->
-<!-- <section class="certifications-section">
-    <div class="container">
-
-        <div class="section-header">
-            <span class="section-tag">Certifications</span>
-            <h2 class="section-title">My Professional Certifications</h2>
-        </div>
-
-        <div class="certifications-grid">
-
-            <div class="certificate-card">
-                <img src="images/certificate1.jpg" alt="React Certification">
-                <div class="certificate-content">
-                    <h3>React JS Certification</h3>
-                    <p>Completed professional React.js training focused on modern frontend development.</p>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <img src="images/certificate2.jpg" alt="Web Development Certification">
-                <div class="certificate-content">
-                    <h3>Web Development Certification</h3>
-                    <p>Comprehensive training in HTML, CSS, JavaScript, and responsive design.</p>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <img src="images/certificate3.jpg" alt="Git & GitHub Certification">
-                <div class="certificate-content">
-                    <h3>Git & GitHub Certification</h3>
-                    <p>Version control and collaborative development using Git and GitHub.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section> -->
-
-
-<!-- ================= AUDIO INTRO SECTION ================= -->
-<section class="audio-section">
+<!-- ========== AUDIO INTRO ========== -->
+<section class="audio-section" aria-labelledby="audio-heading">
     <div class="container">
 
         <div class="section-header">
             <span class="section-tag">Introduction</span>
-            <h2 class="section-title">Listen to My Self Introduction</h2>
+            <h2 class="section-title" id="audio-heading">Listen to My Self Introduction</h2>
         </div>
 
         <div class="audio-wrapper">
-            <audio controls>
+            <audio controls preload="none" aria-label="Sohel's self introduction audio">
                 <source src="./images/audio/self-introduction.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
@@ -275,61 +512,92 @@
     </div>
 </section>
 
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
+<!-- ========== FOOTER ========== -->
+<footer class="footer" role="contentinfo">
     <div class="container">
         <div class="footer-content">
+
             <div class="footer-col">
                 <h3>Sohel.</h3>
-                <p>Frontend Developer passionate about building scalable and user-friendly web applications.</p>
+                <p>Frontend Developer passionate about building scalable, user-friendly web applications with clean, maintainable code.</p>
+                <div class="social-links" aria-label="Social media links">
+                    <a href="https://github.com/mansurisohel" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
+
             <div class="footer-col">
-                <h4>Quick Links</h4>
+                <h4>Navigation</h4>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>About</a></li>
+                    <li><a href="projects.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Projects</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Contact</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">UI Design</a></li>
-                    <li><a href="#">Full Stack Apps</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Web Development</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>UI / UX Design</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Backend Integration</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Full Stack Apps</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
-                <h4>Follow Me</h4>
-                <div class="social-links">
-                    <a href="https://github.com/mansurisohel" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                </div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>
+                        <a href="mailto:sohel170404@gmail.com">
+                            <i class="fas fa-envelope" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>sohel170404@gmail.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+919316434177">
+                            <i class="fas fa-phone" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>+91 93164 34177
+                        </a>
+                    </li>
+                    <li>
+                        <span style="color:rgba(255,255,255,0.58);font-size:.88rem;">
+                            <i class="fas fa-map-marker-alt" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>Ahmadabad, Gujarat, India
+                        </span>
+                    </li>
+                </ul>
             </div>
+
         </div>
-        <div class="footer-bottom">© 2026 Mansuri Sohel. All Rights Reserved.</div>
+
+        <div class="footer-bottom">
+            &copy; 2026 Mansuri Sohel. Crafted with <i class="fas fa-heart" style="color:var(--accent-blue);font-size:.75rem;margin:0 .2rem;"></i> and clean code. All Rights Reserved.
+        </div>
     </div>
 </footer>
 
-<div class="overlay" id="overlay"></div>
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<button class="back-to-top" id="backToTop" aria-label="Scroll back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
 </button>
 
 <script src="main.js"></script>
-
 <script>
-(function(){
+(function () {
     var bar = document.getElementById('scroll-progress');
-    if(!bar) return;
-    window.addEventListener('scroll', function(){
+    if (!bar) return;
+    window.addEventListener('scroll', function () {
         var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
         bar.style.width = Math.min(scrolled, 100) + '%';
-    }, {passive:true});
-})();
+    }, { passive: true });
+}());
 </script>
 </body>
 </html>
