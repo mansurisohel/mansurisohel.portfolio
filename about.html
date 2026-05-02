@@ -5,172 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="About Mansuri Sohel — Frontend Developer. Learn about my skills, journey, and passion for building impactful web solutions.">
     <title>About | Mansuri Sohel</title>
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- Main Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap">
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* ── About page inline enhancements ──────────────────── */
-
-        /* Chip badges inside floating cards */
-        .card-chip {
-            display: inline-block;
-            margin-top: .5rem;
-            padding: .25rem .75rem;
-            background: var(--accent-light);
-            color: var(--accent-blue);
-            border-radius: 100px;
-            font-family: 'Inter', sans-serif;
-            font-size: .72rem;
-            font-weight: 700;
-            letter-spacing: .06em;
-        }
-
-        /* Skill percentage label */
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .skill-pct {
-            font-family: 'Inter', sans-serif;
-            font-size: .75rem;
-            font-weight: 600;
-            color: var(--accent-blue);
-            opacity: .85;
-        }
-
-        /* Divider used between about-text paragraphs */
-        .about-divider {
-            width: 40px;
-            height: 3px;
-            background: var(--gradient-accent);
-            border-radius: 2px;
-            margin: 1.75rem 0;
-        }
-
-        /* Highlight inline text in about paragraphs */
-        .about-text .accent-word {
-            color: var(--accent-blue);
-            font-weight: 600;
-        }
-
-        /* Subtle info row beneath About heading */
-        .about-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .75rem 1.5rem;
-            margin-bottom: 1.75rem;
-        }
-
-        .about-meta-item {
-            display: flex;
-            align-items: center;
-            gap: .45rem;
-            font-family: 'Inter', sans-serif;
-            font-size: .875rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .about-meta-item i {
-            color: var(--accent-blue);
-            font-size: .85rem;
-            flex-shrink: 0;
-        }
-
-        /* Timeline icon badge */
-        .timeline-icon {
-            position: absolute;
-            left: -34px;
-            top: 0;
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Values row on about page */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-            margin-top: 3rem;
-        }
-
-        .value-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 1.75rem 1.5rem;
-            text-align: center;
-            transition: transform .3s ease, box-shadow .3s ease, border-color .25s;
-        }
-
-        .value-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
-            border-color: rgba(74,144,226,.3);
-        }
-
-        .value-icon {
-            font-size: 1.75rem;
-            color: var(--accent-blue);
-            margin-bottom: .875rem;
-        }
-
-        .value-card h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: .95rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: .375rem;
-        }
-
-        .value-card p {
-            font-family: 'Inter', sans-serif;
-            font-size: .82rem;
-            color: var(--text-secondary);
-            line-height: 1.65;
-        }
-
-        @media (max-width: 768px) {
-            .values-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        @media (max-width: 480px) {
-            .values-grid { grid-template-columns: 1fr; }
-            .about-meta { gap: .6rem 1rem; }
-        }
-
-        /* Dark mode for inline styles */
-        body.dark-mode .value-card { background: var(--bg-card); border-color: var(--border-color); }
-    </style>
+    <link rel="stylesheet" href="about-styles.css">
 </head>
 <body>
-
 <div id="scroll-progress"></div>
-
-<!-- ========== NAVBAR ========== -->
 <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
         <a href="index.html" class="logo" aria-label="Sohel Portfolio Home">Sohel<span class="logo-dot">.</span></a>
-
         <ul class="nav-menu" id="navMenu" role="list">
-            <li role="listitem"><a href="index.html"    class="nav-link">Home</a></li>
-            <li role="listitem"><a href="about.html"    class="nav-link active">About</a></li>
+            <li role="listitem"><a href="index.html" class="nav-link">Home</a></li>
+            <li role="listitem"><a href="about.html" class="nav-link active">About</a></li>
             <li role="listitem"><a href="projects.html" class="nav-link">Projects</a></li>
-            <li role="listitem"><a href="contact.html"  class="nav-link">Contact</a></li>
+            <li role="listitem"><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
-
         <div class="navbar-controls">
             <label class="theme-toggle" for="themeCheckbox" aria-label="Toggle dark mode">
                 <input type="checkbox" id="themeCheckbox">
-                <span class="toggle-track">
-                    <span class="toggle-thumb"></span>
-                </span>
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
                 <span class="toggle-label">Dark</span>
             </label>
             <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -180,359 +35,258 @@
     </div>
 </nav>
 
-<!-- ========== PAGE HERO ========== -->
-<section class="page-hero" aria-labelledby="about-page-heading">
+<!-- HERO -->
+<section class="ab-hero" aria-labelledby="ab-main-heading">
+    <span class="ab-hero-watermark" aria-hidden="true">SOHEL</span>
     <div class="container">
-        <span class="page-tag">About Me</span>
-        <h1 class="page-title" id="about-page-heading">
-            Passionate About Creating<br>Impactful Web Solutions
-        </h1>
-        <p class="page-subtitle">
-            A dedicated frontend developer focused on building modern, responsive,
-            and user-friendly digital experiences that make a difference.
-        </p>
-    </div>
-</section>
-
-<!-- ========== WHO AM I ========== -->
-<section class="hero" aria-labelledby="who-am-i-heading">
-    <div class="hero-background" aria-hidden="true"></div>
-
-    <div class="container">
-
-        <!-- Left — Bio text -->
-        <div class="about-text">
-            <h2 id="who-am-i-heading">Who Am I?</h2>
-
-            <div class="about-meta">
-                <span class="about-meta-item">
-                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                    Ahmadabad, Gujarat, India
-                </span>
-                <span class="about-meta-item">
-                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                    B.Tech (C.E.)
-                </span>
-                <span class="about-meta-item">
-                    <i class="fas fa-laptop-code" aria-hidden="true"></i>
-                    Frontend Developer
-                </span>
-                <span class="about-meta-item">
-                    <i class="fas fa-circle" style="font-size:.55rem;color:#22c55e;" aria-hidden="true"></i>
-                    Available for work
-                </span>
-            </div>
-
-            <p>
-                I am a junior <span class="accent-word">frontend developer</span> with solid knowledge of
-                HTML, CSS, JavaScript, and React.js. I enjoy transforming ideas into interactive and
-                scalable web applications that look great and feel intuitive to use.
-            </p>
-
-            <div class="about-divider" aria-hidden="true"></div>
-
-            <p>
-                Currently building projects like a <span class="accent-word">Car Rental Platform (DriveEase)</span>
-                and an <span class="accent-word">AI-based Smart Plant Disease Detection System</span>
-                — blending frontend craft with machine learning to solve real-world problems.
-            </p>
-
-            <p>
-                My goal is to grow into a <span class="accent-word">full-stack developer</span> and ship
-                impactful digital solutions. I believe in clean code, constant learning, and building things that matter.
-            </p>
-
-            <!-- Counter stats -->
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <h3 data-counter="3" data-suffix="+">0+</h3>
-                    <p>Projects Completed</p>
-                </div>
-                <div class="stat-item">
-                    <h3 data-counter="6" data-suffix="+">0+</h3>
-                    <p>Months Experience</p>
-                </div>
-                <div class="stat-item">
-                    <h3 data-counter="100" data-suffix="%">0%</h3>
-                    <p>Client Satisfaction</p>
+        <div class="ab-identity">
+            <span class="ab-availability">
+                <span class="ab-availability-dot"></span>
+                Available for opportunities
+            </span>
+            <div class="ab-name-block">
+                <h1 class="ab-headline" id="ab-main-heading">
+                    Frontend Developer<br><em>Building for Impact</em>
+                </h1>
+                <div class="ab-meta-row">
+                    <span class="ab-meta-pill"><i class="fas fa-map-marker-alt"></i> Ahmedabad, Gujarat, India</span>
+                    <span class="ab-meta-pill"><i class="fas fa-graduation-cap"></i> B.Tech — Computer Engineering</span>
+                    <span class="ab-meta-pill"><i class="fas fa-laptop-code"></i> React &amp; JavaScript</span>
                 </div>
             </div>
-
-            <!-- CTAs -->
-            <div class="cta-buttons">
-                <a href="projects.html" class="btn btn-primary">
-                    <i class="fas fa-briefcase" aria-hidden="true"></i> View My Work
+            <p class="ab-bio">
+                I'm <strong>Mansuri Sohel</strong>, a frontend developer who turns ideas into clean, responsive, and user-centric web experiences. My work sits at the intersection of design craft and engineering discipline — I care deeply about both how things look and how they perform.
+            </p>
+            <div class="ab-divider" aria-hidden="true"></div>
+            <p class="ab-bio">
+                Currently building <strong>DriveEase</strong> (a full-featured car rental platform) and an <strong>AI-powered Plant Disease Detection System</strong>, blending modern frontend techniques with machine learning to solve real problems. My goal: grow into a confident <strong>full-stack engineer</strong> who ships complete, production-ready applications.
+            </p>
+        </div>
+        <div class="ab-stats-card" aria-label="Key statistics">
+            <div class="ab-stat-row">
+                <div class="ab-stat-box">
+                    <div class="ab-stat-num" data-counter="3" data-suffix="+">0+</div>
+                    <div class="ab-stat-label">Projects<br>Completed</div>
+                </div>
+                <div class="ab-stat-box">
+                    <div class="ab-stat-num" data-counter="6" data-suffix="+">0+</div>
+                    <div class="ab-stat-label">Months<br>Experience</div>
+                </div>
+                <div class="ab-stat-box">
+                    <div class="ab-stat-num" data-counter="5" data-suffix="+">0+</div>
+                    <div class="ab-stat-label">Technologies<br>Learned</div>
+                </div>
+                <div class="ab-stat-box">
+                    <div class="ab-stat-num" data-counter="100" data-suffix="%">0%</div>
+                    <div class="ab-stat-label">Commitment<br>to Quality</div>
+                </div>
+            </div>
+            <div class="ab-card-actions">
+                <a href="projects.html" class="btn btn-primary" style="flex:1;justify-content:center">
+                    <i class="fas fa-briefcase"></i> My Projects
                 </a>
-                <a href="contact.html" class="btn btn-outline">
-                    <i class="fas fa-paper-plane" aria-hidden="true"></i> Contact Me
+                <a href="contact.html" class="btn btn-outline" style="flex:1;justify-content:center">
+                    <i class="fas fa-paper-plane"></i> Let's Talk
                 </a>
             </div>
         </div>
-
-        <!-- Right — Floating cards (hidden on mobile) -->
-        <div class="hero-visual" aria-hidden="true">
-            <div class="floating-card card-1">
-                <div class="card-icon"><i class="fas fa-code"></i></div>
-                <h4>Clean Code</h4>
-                <span class="card-chip">Best Practices</span>
-            </div>
-
-            <div class="floating-card card-2">
-                <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h4>Responsive Design</h4>
-                <span class="card-chip">Mobile First</span>
-            </div>
-
-            <div class="floating-card card-3">
-                <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                <h4>Fast Performance</h4>
-                <span class="card-chip">Optimised</span>
-            </div>
-        </div>
-
+    </div>
+    <div class="ab-scroll-cue" aria-hidden="true">
+        <i class="fas fa-chevron-down"></i> Scroll to explore <i class="fas fa-chevron-down"></i>
     </div>
 </section>
 
-<!-- ========== VALUES ========== -->
-<section class="services" aria-labelledby="values-heading" style="padding-top: 4rem; padding-bottom: 5rem;">
+<!-- SKILLS -->
+<section class="ab-skills" id="skills" aria-labelledby="ab-skills-heading">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Skills &amp; Stack</span>
+            <h2 class="section-title" id="ab-skills-heading">Technical <span class="highlight">Expertise</span></h2>
+        </div>
+        <div class="ab-skills-layout">
+            <div class="ab-skills-sidebar">
+                <p class="ab-skills-intro">A focused set of technologies chosen to build fast, accessible, and maintainable web products. I'm deepening mastery of my core stack while expanding steadily into backend and ML territories.</p>
+                <div class="ab-proficiency-legend">
+                    <div class="ab-legend-item"><span class="ab-legend-dot expert"></span>Expert — high confidence, production-ready</div>
+                    <div class="ab-legend-item"><span class="ab-legend-dot solid"></span>Solid — comfortable, actively using</div>
+                    <div class="ab-legend-item"><span class="ab-legend-dot growing"></span>Growing — learning, building projects</div>
+                </div>
+            </div>
+            <div class="ab-skills-panels">
+                <div class="ab-skill-panel">
+                    <div class="ab-panel-header">
+                        <div class="ab-panel-icon"><i class="fas fa-code"></i></div>
+                        <div><div class="ab-panel-title">Frontend Development</div><div class="ab-panel-subtitle">UI layer — structure, style, interactivity</div></div>
+                    </div>
+                    <div class="ab-tags">
+                        <span class="ab-tag expert"><span class="ab-tag-dot"></span>HTML5</span>
+                        <span class="ab-tag expert"><span class="ab-tag-dot"></span>CSS3</span>
+                        <span class="ab-tag expert"><span class="ab-tag-dot"></span>JavaScript (ES6+)</span>
+                        <span class="ab-tag expert"><span class="ab-tag-dot"></span>Responsive Design</span>
+                        <span class="ab-tag solid"><span class="ab-tag-dot"></span>Tailwind CSS</span>
+                        <span class="ab-tag solid"><span class="ab-tag-dot"></span>Flexbox &amp; Grid</span>
+                        <span class="ab-tag growing"><span class="ab-tag-dot"></span>React.js</span>
+                        <span class="ab-tag growing"><span class="ab-tag-dot"></span>REST APIs</span>
+                    </div>
+                </div>
+                <div class="ab-skill-panel">
+                    <div class="ab-panel-header">
+                        <div class="ab-panel-icon"><i class="fas fa-database"></i></div>
+                        <div><div class="ab-panel-title">Databases &amp; Backend Basics</div><div class="ab-panel-subtitle">Data storage, querying, and server-side fundamentals</div></div>
+                    </div>
+                    <div class="ab-tags">
+                        <span class="ab-tag solid"><span class="ab-tag-dot"></span>MySQL</span>
+                        <span class="ab-tag solid"><span class="ab-tag-dot"></span>SQL</span>
+                        <span class="ab-tag solid"><span class="ab-tag-dot"></span>MongoDB</span>
+                        <span class="ab-tag growing"><span class="ab-tag-dot"></span>Node.js</span>
+                        <span class="ab-tag growing"><span class="ab-tag-dot"></span>Express.js</span>
+                    </div>
+                </div>
+                <div class="ab-skill-panel">
+                    <div class="ab-panel-header">
+                        <div class="ab-panel-icon"><i class="fas fa-tools"></i></div>
+                        <div><div class="ab-panel-title">Tools &amp; AI/ML</div><div class="ab-panel-subtitle">Developer workflow and emerging technologies</div></div>
+                    </div>
+                    <div class="ab-tags">
+                        <span class="ab-tag expert"><span class="ab-tag-dot"></span>Git</span>
+                        <span class="ab-tag expert"><span class="ab-tag-dot"></span>GitHub</span>
+                        <span class="ab-tag solid"><span class="ab-tag-dot"></span>VS Code</span>
+                        <span class="ab-tag solid"><span class="ab-tag-dot"></span>Figma (Basics)</span>
+                        <span class="ab-tag growing"><span class="ab-tag-dot"></span>Python</span>
+                        <span class="ab-tag growing"><span class="ab-tag-dot"></span>TensorFlow</span>
+                        <span class="ab-tag growing"><span class="ab-tag-dot"></span>Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VALUES -->
+<section class="ab-values" aria-labelledby="ab-values-heading">
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Core Values</span>
-            <h2 class="section-title" id="values-heading">What Drives My Work</h2>
+            <h2 class="section-title" id="ab-values-heading">What Drives <span class="highlight">My Work</span></h2>
         </div>
-
-        <div class="values-grid">
-            <article class="value-card">
-                <div class="value-icon" aria-hidden="true"><i class="fas fa-feather-alt"></i></div>
-                <h4>Simplicity</h4>
-                <p>Writing clear, maintainable code that anyone can read and build upon.</p>
+        <div class="ab-values-grid">
+            <article class="ab-value-card">
+                <div class="ab-value-num" aria-hidden="true">01</div>
+                <div class="ab-value-icon-wrap"><i class="fas fa-feather-alt"></i></div>
+                <h3 class="ab-value-title">Simplicity First</h3>
+                <p class="ab-value-desc">Clean, readable code that future developers — and future me — can build upon without confusion. Complexity is only added when it earns its place.</p>
             </article>
-
-            <article class="value-card">
-                <div class="value-icon" aria-hidden="true"><i class="fas fa-users"></i></div>
-                <h4>User Focus</h4>
-                <p>Designing every interface with the end user's experience at the centre.</p>
+            <article class="ab-value-card">
+                <div class="ab-value-num" aria-hidden="true">02</div>
+                <div class="ab-value-icon-wrap"><i class="fas fa-users"></i></div>
+                <h3 class="ab-value-title">User-Centred Thinking</h3>
+                <p class="ab-value-desc">Every design decision flows from the question: "Does this serve the person using it?" Good interfaces feel intuitive because they're built with empathy.</p>
             </article>
-
-            <article class="value-card">
-                <div class="value-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
-                <h4>Continuous Growth</h4>
-                <p>Always learning new tools, patterns, and techniques to stay sharp.</p>
+            <article class="ab-value-card">
+                <div class="ab-value-num" aria-hidden="true">03</div>
+                <div class="ab-value-icon-wrap"><i class="fas fa-chart-line"></i></div>
+                <h3 class="ab-value-title">Continuous Growth</h3>
+                <p class="ab-value-desc">The web evolves fast. I invest in deliberate practice — shipping real projects, studying patterns, and learning from every mistake to compound my skills over time.</p>
             </article>
         </div>
     </div>
 </section>
 
-<!-- ========== SKILLS ========== -->
-<section class="skills-section" id="skills" aria-labelledby="skills-heading">
+<!-- JOURNEY / TIMELINE -->
+<section class="ab-journey" id="journey" aria-labelledby="ab-journey-heading">
     <div class="container">
-
-        <div class="section-header">
-            <span class="section-tag">Skills</span>
-            <h2 class="section-title" id="skills-heading">Technical Expertise</h2>
-        </div>
-
-        <div class="skills-container">
-
-            <!-- Frontend Skills -->
-            <div class="skill-category">
-                <div class="skill-header">
-                    <div class="skill-icon" aria-hidden="true"><i class="fas fa-code fa-2x"></i></div>
-                    <h3>Frontend</h3>
-                </div>
-
-                <ul class="skill-list" style="list-style:none;">
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>HTML &amp; CSS</span>
-                            <span class="skill-pct">90%</span>
-                        </div>
-                        <div class="skill-bar" role="progressbar" aria-label="HTML &amp; CSS proficiency" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                            <div class="skill-progress" style="width: 90%;"></div>
-                        </div>
-                    </li>
-
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>JavaScript (ES6+)</span>
-                            <span class="skill-pct">85%</span>
-                        </div>
-                        <div class="skill-bar" role="progressbar" aria-label="JavaScript proficiency" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <div class="skill-progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Tailwind CSS</span>
-                            <span class="skill-pct">60%</span>
-                        </div>
-                        <div class="skill-bar" role="progressbar" aria-label="Tailwind CSS proficiency" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                            <div class="skill-progress" style="width: 60%;"></div>
-                        </div>
-                    </li>
-
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>React.js</span>
-                            <span class="skill-pct">45%</span>
-                        </div>
-                        <div class="skill-bar" role="progressbar" aria-label="React.js proficiency" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-                            <div class="skill-progress" style="width: 45%;"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Backend & Tools -->
-            <div class="skill-category">
-                <div class="skill-header">
-                    <div class="skill-icon" aria-hidden="true"><i class="fas fa-server fa-2x"></i></div>
-                    <h3>Database &amp; Tools</h3>
-                </div>
-
-                <ul class="skill-list" style="list-style:none;">
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>MySQL &amp; SQL</span>
-                            <span class="skill-pct">70%</span>
-                        </div>
-                        <div class="skill-bar" role="progressbar" aria-label="MySQL proficiency" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                            <div class="skill-progress" style="width: 70%;"></div>
-                        </div>
-                    </li>
-
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>MongoDB</span>
-                            <span class="skill-pct">65%</span>
-                        </div>
-                        <div class="skill-bar" role="progressbar" aria-label="MongoDB proficiency" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
-                            <div class="skill-progress" style="width: 65%;"></div>
-                        </div>
-                    </li>
-
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Git &amp; GitHub</span>
-                            <span class="skill-pct">85%</span>
-                        </div>
-                        <div class="skill-bar" role="progressbar" aria-label="Git proficiency" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                            <div class="skill-progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Python / TensorFlow</span>
-                            <span class="skill-pct">40%</span>
-                        </div>
-                        <div class="skill-bar" role="progressbar" aria-label="Python proficiency" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                            <div class="skill-progress" style="width: 40%;"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ========== TIMELINE ========== -->
-<section class="timeline-section" id="journey" aria-labelledby="timeline-heading">
-    <div class="container">
-
         <div class="section-header">
             <span class="section-tag">Journey</span>
-            <h2 class="section-title" id="timeline-heading">My Learning Path</h2>
+            <h2 class="section-title" id="ab-journey-heading">My Learning <span class="highlight">Path</span></h2>
         </div>
-
-        <div class="timeline">
-
-            <article class="timeline-item">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-content">
-                    <time class="timeline-date" datetime="2024">2024 – 2025</time>
-                    <h3>Started Web Development</h3>
-                    <h4>Mastering HTML, CSS &amp; JavaScript</h4>
-                    <p>
-                        Built foundational projects and strengthened core frontend concepts —
-                        focusing on responsive layouts, semantic HTML, and modern CSS techniques.
-                    </p>
+        <div class="ab-timeline">
+            <article class="ab-tl-item">
+                <div class="ab-tl-year-col">
+                    <div class="ab-tl-year">2024<br>— 2025</div>
+                    <div class="ab-tl-dot" aria-hidden="true"></div>
+                </div>
+                <div class="ab-tl-content">
+                    <span class="ab-tl-phase">Phase 1 — Foundations</span>
+                    <h3 class="ab-tl-title">Mastering HTML, CSS &amp; JavaScript</h3>
+                    <p class="ab-tl-sub">Core Frontend Craft</p>
+                    <p class="ab-tl-desc">Built foundational projects focused on responsive layouts, semantic HTML, and modern CSS techniques. Established strong habits around clean code and developer tooling — Git, VS Code, and browser DevTools — that carry through every project today.</p>
                 </div>
             </article>
-
-            <article class="timeline-item">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-content">
-                    <time class="timeline-date" datetime="2024">2024 – Present</time>
-                    <h3>Diving into React &amp; Full Stack</h3>
-                    <h4>Project-Based Learning</h4>
-                    <p>
-                        Developed <strong>DriveEase</strong> (car rental platform) and an <strong>AI-based Plant Disease
-                        Detection</strong> system using React.js, REST APIs, and Python — building real-world
-                        problem-solving skills.
-                    </p>
+            <article class="ab-tl-item">
+                <div class="ab-tl-year-col">
+                    <div class="ab-tl-year">2024<br>— Now</div>
+                    <div class="ab-tl-dot" aria-hidden="true"></div>
+                </div>
+                <div class="ab-tl-content">
+                    <span class="ab-tl-phase">Phase 2 — Applied Projects</span>
+                    <h3 class="ab-tl-title">React, Databases &amp; Real-World Apps</h3>
+                    <p class="ab-tl-sub">Project-Based Engineering</p>
+                    <p class="ab-tl-desc">Developed <strong>DriveEase</strong> — a car rental platform — and an <strong>AI-based Plant Disease Detection System</strong> using React.js, REST APIs, and Python/TensorFlow. These projects taught me how to architect features, manage state, and bridge frontend and backend concerns.</p>
                 </div>
             </article>
-
-            <article class="timeline-item">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-content">
-                    <time class="timeline-date" datetime="2025">2025 – Future</time>
-                    <h3>Full Stack Developer Goal</h3>
-                    <h4>Node.js, Databases &amp; Beyond</h4>
-                    <p>
-                        Expanding into backend development with Node.js and Express, deepening database
-                        knowledge, and aiming to deliver complete, production-grade applications independently.
-                    </p>
+            <article class="ab-tl-item">
+                <div class="ab-tl-year-col">
+                    <div class="ab-tl-year">2025<br>— Goal</div>
+                    <div class="ab-tl-dot" aria-hidden="true"></div>
+                </div>
+                <div class="ab-tl-content">
+                    <span class="ab-tl-phase">Phase 3 — Full Stack</span>
+                    <h3 class="ab-tl-title">Node.js, APIs &amp; Production-Grade Apps</h3>
+                    <p class="ab-tl-sub">From Frontend to Full Stack</p>
+                    <p class="ab-tl-desc">Expanding into backend development with <strong>Node.js</strong> and <strong>Express</strong>, deepening database knowledge across SQL and NoSQL, and building toward shipping complete, independently-maintained production applications — end to end.</p>
                 </div>
             </article>
-
         </div>
     </div>
 </section>
 
-<!-- ========== AUDIO INTRO ========== -->
-<section class="audio-section" aria-labelledby="audio-heading">
+<!-- AUDIO -->
+<section class="ab-audio" aria-labelledby="ab-audio-heading">
     <div class="container">
-
         <div class="section-header">
             <span class="section-tag">Introduction</span>
-            <h2 class="section-title" id="audio-heading">Listen to My Self Introduction</h2>
+            <h2 class="section-title" id="ab-audio-heading">Hear It From <span class="highlight">Me</span></h2>
         </div>
-
-        <div class="audio-wrapper">
+        <div class="ab-audio-card">
+            <div class="ab-audio-label">
+                <i class="fas fa-microphone-alt"></i> Self-Introduction &middot; ~1 min
+            </div>
             <audio controls preload="none" aria-label="Sohel's self introduction audio">
                 <source src="./images/audio/self-introduction.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
+            <p class="ab-audio-note">Prefer reading? Scroll up — everything's covered above.</p>
         </div>
-
     </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- CTA -->
+<section class="ab-cta" aria-labelledby="ab-cta-heading">
+    <div class="container">
+        <div class="ab-cta-inner">
+            <h2 id="ab-cta-heading">Ready to Build Something Together?</h2>
+            <p>Whether you have a project in mind, a role to fill, or just want to connect — my inbox is always open.</p>
+            <div class="ab-cta-buttons">
+                <a href="contact.html" class="btn ab-btn-white"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+                <a href="projects.html" class="btn ab-btn-ghost"><i class="fas fa-briefcase"></i> View Projects</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer" role="contentinfo">
     <div class="container">
         <div class="footer-content">
-
             <div class="footer-col">
                 <h3>Sohel.</h3>
-                <p>Frontend Developer passionate about building scalable, user-friendly web applications with clean, maintainable code.</p>
+                <p>Frontend developer passionate about building scalable, user-friendly web applications with clean, maintainable code.</p>
                 <div class="social-links" aria-label="Social media links">
-                    <a href="https://github.com/mansurisohel" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                    <a href="https://github.com/mansurisohel" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sohel-mansuri-9a268227a" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-
             <div class="footer-col">
                 <h4>Navigation</h4>
                 <ul>
@@ -542,40 +296,24 @@
                     <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Contact</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Web Development</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>UI / UX Design</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Backend Integration</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Full Stack Apps</a></li>
+                    <li><a href="projects.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Web Development</a></li>
+                    <li><a href="projects.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>UI / UX Design</a></li>
+                    <li><a href="projects.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Backend Integration</a></li>
+                    <li><a href="projects.html"><i class="fas fa-chevron-right" style="font-size:.65rem;margin-right:.35rem;opacity:.6"></i>Full Stack Apps</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Contact</h4>
                 <ul>
-                    <li>
-                        <a href="mailto:sohel170404@gmail.com">
-                            <i class="fas fa-envelope" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>sohel170404@gmail.com
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tel:+919316434177">
-                            <i class="fas fa-phone" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>+91 93164 34177
-                        </a>
-                    </li>
-                    <li>
-                        <span style="color:rgba(255,255,255,0.58);font-size:.88rem;">
-                            <i class="fas fa-map-marker-alt" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>Ahmadabad, Gujarat, India
-                        </span>
-                    </li>
+                    <li><a href="mailto:sohel170404@gmail.com"><i class="fas fa-envelope" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>sohel170404@gmail.com</a></li>
+                    <li><a href="tel:+919316434177"><i class="fas fa-phone" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>+91 93164 34177</a></li>
+                    <li><span style="color:rgba(255,255,255,0.58);font-size:.88rem;"><i class="fas fa-map-marker-alt" style="font-size:.75rem;margin-right:.4rem;opacity:.6"></i>Ahmedabad, Gujarat, India</span></li>
                 </ul>
             </div>
-
         </div>
-
         <div class="footer-bottom">
             &copy; 2026 Mansuri Sohel. Crafted with <i class="fas fa-heart" style="color:var(--accent-blue);font-size:.75rem;margin:0 .2rem;"></i> and clean code. All Rights Reserved.
         </div>
@@ -583,10 +321,7 @@
 </footer>
 
 <div class="overlay" id="overlay" aria-hidden="true"></div>
-
-<button class="back-to-top" id="backToTop" aria-label="Scroll back to top">
-    <i class="fas fa-arrow-up" aria-hidden="true"></i>
-</button>
+<button class="back-to-top" id="backToTop" aria-label="Scroll back to top"><i class="fas fa-arrow-up"></i></button>
 
 <script src="main.js"></script>
 <script>

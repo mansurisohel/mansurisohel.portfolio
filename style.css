@@ -668,7 +668,7 @@ body.dark-mode .page-tag {
     grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
     align-items: center;
-    margin-right: 200px;
+
 }
 
 /* About page text block */
@@ -2041,4 +2041,72 @@ body.dark-mode .footer-bottom { border-top-color: rgba(255,255,255,0.05); }
 
 body.dark-mode .cursor-glow {
     background: radial-gradient(circle, rgba(74,144,226,0.55) 0%, transparent 70%);
+}
+
+/* ================================================================
+   ADDITIONAL RESPONSIVE FIXES — v2 patch
+================================================================ */
+
+/* Hero layout on index page — fix grid collapsing */
+@media (max-width: 960px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .about-image-wrapper {
+        position: static;
+        align-items: center;
+    }
+}
+
+/* Ensure hero stats never overflow on 3-column at small widths */
+@media (max-width: 560px) {
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: .5rem;
+    }
+    .stat-item h3 { font-size: 1.5rem; }
+    .stat-item p  { font-size: .7rem; }
+}
+
+/* Fix footer link columns on mid-range */
+@media (max-width: 640px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Fix project card full on tablet */
+@media (max-width: 860px) {
+    .project-card-full,
+    .project-card-full:nth-child(even) {
+        grid-template-columns: 1fr;
+    }
+    .project-card-full:nth-child(even) .project-visual { order: 0; }
+    .project-visual { min-height: 240px; }
+}
+
+/* Contact page form responsiveness */
+@media (max-width: 600px) {
+    .contact-form-wrapper { padding: 1.75rem 1.25rem; }
+}
+
+/* Navbar mobile — tighter padding */
+@media (max-width: 380px) {
+    .navbar { padding: .875rem 0; }
+    .logo   { font-size: 1.4rem; }
+    .container { padding: 0 14px; }
+}
+
+/* Make sr-hidden / sr-visible work correctly */
+.sr-hidden {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .55s ease, transform .55s ease;
+}
+
+.sr-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
