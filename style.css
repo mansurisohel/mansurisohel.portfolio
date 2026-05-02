@@ -1993,7 +1993,7 @@ section:not(.hero):not(.page-hero) {
     .stat-box h3 { font-size: 1.2rem; }
     .stat-box p { font-size: 0.63rem; }
 
-    .about-image img { width: 150px; }
+    .about-image img { width: 350px; }
     .about-image { padding: 1rem; }
 
     .service-card, .skill-category { padding: 1.75rem 1.25rem; }
