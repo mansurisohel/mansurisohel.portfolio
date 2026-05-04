@@ -142,6 +142,12 @@
         body.dark-mode .map-placeholder { background: rgba(13,22,37,.8); }
         body.dark-mode .availability-banner { background: rgba(34,197,94,.06); }
     </style>
+    <!-- EmailJS SDK — sends form data to Gmail without a backend -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // ── STEP 1: Replace with your EmailJS Public Key ──────────────────────
+        (function () { emailjs.init({ publicKey: 'Xa1vh9NyVWXOl_hlG' }); })();
+    </script>
 </head>
 <body>
 
@@ -367,7 +373,7 @@
             </article>
 
             <article class="faq-item">
-                <h4><i class="fa fa-inr" aria-hidden="true"></i> Do you offer flexible pricing?</h4>
+                <h4><i class="fas fa-rupee-sign" aria-hidden="true"></i> Do you offer flexible pricing?</h4>
                 <p>Yes — pricing depends on project scope, complexity, and timeline. I'm happy to discuss a budget that works for both sides.</p>
             </article>
 

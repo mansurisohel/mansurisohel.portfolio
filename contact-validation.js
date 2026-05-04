@@ -152,36 +152,59 @@
             return;
         }
 
-        /* Simulate sending — show loading state */
+        /* ── STEP 2: Replace these two IDs from your EmailJS dashboard ───────
+           SERVICE_ID  → your connected Gmail service  (e.g. 'service_abc123')
+           TEMPLATE_ID → your email template           (e.g. 'template_xyz456')
+        ────────────────────────────────────────────────────────────────────── */
+        var SERVICE_ID  = 'service_efndchg';
+        var TEMPLATE_ID = 'template_rawjgpc';
+
+        /* Build the template parameters — these match the {{variables}}
+           you set in your EmailJS template */
+        var templateParams = {
+            from_name    : form.querySelector('#firstName').value.trim() + ' ' +
+                           form.querySelector('#lastName').value.trim(),
+            from_email   : form.querySelector('#email').value.trim(),
+            phone        : form.querySelector('#phone').value.trim() || 'Not provided',
+            subject      : form.querySelector('#subject').value.trim(),
+            message      : form.querySelector('#message').value.trim()
+        };
+
+        /* Show loading state */
         if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
         }
 
-        setTimeout(function () {
-            /* Show success */
-            if (successMsg) {
-                successMsg.classList.add('show');
-            }
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+            .then(function () {
+                /* ── Success ── */
+                if (successMsg) successMsg.classList.add('show');
 
-            /* Reset form */
-            form.reset();
-            form.querySelectorAll('input, textarea').forEach(function (f) {
-                f.classList.remove('success', 'error');
+                form.reset();
+                form.querySelectorAll('input, textarea').forEach(function (f) {
+                    f.classList.remove('success', 'error');
+                });
+                if (messageField) counter.textContent = '0 / 2000';
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                }
+
+                setTimeout(function () {
+                    if (successMsg) successMsg.classList.remove('show');
+                }, 5000);
+            })
+            .catch(function (err) {
+                /* ── Error ── */
+                console.error('EmailJS error:', err);
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                }
+                alert('Sorry, something went wrong. Please try again or email me directly.');
             });
-            if (messageField) counter.textContent = '0 / 2000';
-
-            /* Restore button */
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-            }
-
-            /* Hide success after 5s */
-            setTimeout(function () {
-                if (successMsg) successMsg.classList.remove('show');
-            }, 5000);
-        }, 1200);
     });
 
 }());
